@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home_page_feed, name="home_page_feed"),
+    path("", views.feed, name="feed"),
+    path("create/", views.create_post, name="create_post"),
 ]
