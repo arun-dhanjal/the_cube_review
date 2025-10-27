@@ -14,6 +14,12 @@ class Feed(generic.ListView):
     paginate_by = 3
 
 
+class PostDetail(generic.DetailView):
+    model = Post
+    template_name = "feed/post_detail.html"
+    context_object_name = "post"
+
+
 @login_required
 def create_post(request):
     if request.method == "POST":

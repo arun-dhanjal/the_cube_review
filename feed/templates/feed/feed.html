@@ -11,6 +11,7 @@
                     <img src="{{ post.image.url }}" class="img-fluid mt-2" alt="Post image">
                 {% endif %}
                 <small class="text-muted">Posted by {{ post.author.username }} on {{ post.created_at }}</small>
+                <a href="{% url 'post_detail' post.pk %}" class="btn btn-outline-primary">View Post</a>
             </div>
         </div>
     {% empty %}
@@ -36,7 +37,7 @@
             
             {% if page_obj.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}"">Next</a>
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
