@@ -24,10 +24,11 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     is_approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["created_at"]
 
     def __str__(self):
-        return f"Commnet by {self.author.username} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        return f"Comment by {self.author.username} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
