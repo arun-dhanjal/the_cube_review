@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -14,10 +14,25 @@ class Feed(generic.ListView):
     paginate_by = 3
 
 
-class PostDetail(generic.DetailView):
-    model = Post
-    template_name = "feed/post_detail.html"
-    context_object_name = "post"
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = post.comments.filter(is_approved=True)
+    form = CommentForm
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect("post_detail", pk=post.pk)
+
+    return render(request, "feed/post_detail.html", {
+        "post": post,
+        "comments": comments,
+        "form": form,
+    })
 
 
 @login_required
