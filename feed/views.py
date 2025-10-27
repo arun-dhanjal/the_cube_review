@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views import generic
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
@@ -6,9 +7,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def feed(request):
-    posts = Post.objects.filter(is_approved=True)
-    return render(request, "feed/feed.html", {"posts": posts})
+class Feed(generic.ListView):
+    queryset = Post.objects.filter(is_approved=True)
+    template_name = "feed/feed.html"
+    context_object_name = "posts"
+    paginate_by = 3
 
 
 @login_required
