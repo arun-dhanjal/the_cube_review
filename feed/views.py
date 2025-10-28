@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from django.views import generic
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -47,3 +48,24 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, "feed/create_post.html", {"form": form})
+
+
+@login_required
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if comment.author != request.user:
+        return HttpResponseForbidden("You can't edit this comment.")
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect("post_detail", pk=comment.post.pk)
+
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, "feed/edit_comment.html", {
+        "form": form,
+        "comment": comment,
+    })

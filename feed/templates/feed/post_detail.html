@@ -23,6 +23,12 @@
         faded{% elif not comment.is_approved %}d-none{% endif %}">
         <p>{{ comment.body }}</p>
         <small>{{ comment.author }} on {{ comment.created_at|date:"Y-m-d H:i" }}</small>
+        {% if comment.updated_at > comment.created_at %}
+            <br><small>(Edited on {{ comment.updated_at|date:"Y-m-d H:i" }})</small>
+        {% endif %}
+        {% if comment.author == request.user %}
+            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        {% endif %}
     </div>
 {% empty %}
     <p>No comments yet.</p>
