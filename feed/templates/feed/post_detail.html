@@ -18,9 +18,11 @@
 <!-- List of comments -->
 <h3>Comments</h3>
 {% for comment in comments %}
-    <div class="border p-2 mb-2">
+    <div class="border p-2 mb-2
+        {% if not comment.is_approved and comment.author == user %}
+        faded{% elif not comment.is_approved %}d-none{% endif %}">
         <p>{{ comment.body }}</p>
-        <small class="text-muted">{{ comment.author }} on {{ comment.created_at|date:"Y-m-d H:i" }}</small>
+        <small>{{ comment.author }} on {{ comment.created_at|date:"Y-m-d H:i" }}</small>
     </div>
 {% empty %}
     <p>No comments yet.</p>

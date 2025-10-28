@@ -16,7 +16,7 @@ class Feed(generic.ListView):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    comments = post.comments.filter(is_approved=True)
+    comments = post.comments.all()
     form = CommentForm
 
     if request.method == "POST":
