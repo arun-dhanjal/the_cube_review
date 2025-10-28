@@ -12,6 +12,9 @@
             <img src="{{ post.image.url }}" class="img-fluid mt-2" alt="Post image">
         {% endif %}
         <small>Posted by {{ post.author }} on {{ post.created_at }}</small>
+        {% if post.author == request.user %}
+            <a href="{% url 'edit_post' post.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        {% endif %}
     </div>
 </div>
 

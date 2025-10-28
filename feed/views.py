@@ -51,6 +51,29 @@ def create_post(request):
 
 
 @login_required
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return HttpResponseForbidden("You can't edit this post.")
+
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            if form.cleaned_data.get("remove_image"):
+                post.image = None
+            post.save()
+            return redirect("post_detail", pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, "feed/edit_post.html", {
+        "form": form,
+        "post": post,
+    })
+
+
+@login_required
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
@@ -80,3 +103,5 @@ def delete_comment(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect("post_detail", pk=post_pk)
+
+
