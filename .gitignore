@@ -1,3 +1,6 @@
 .venv/
 env.py
-__pychache__/
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
