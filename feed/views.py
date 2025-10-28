@@ -9,7 +9,7 @@ from .forms import PostForm, CommentForm
 
 
 class Feed(generic.ListView):
-    queryset = Post.objects.filter(is_approved=True)
+    queryset = Post.objects.all()
     template_name = "feed/feed.html"
     context_object_name = "posts"
     paginate_by = 3

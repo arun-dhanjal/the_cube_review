@@ -4,12 +4,14 @@
 {% block content %}
 
 <div class="card">   
-    <div class="card-body">
+    <div class="card-body
+        {% if not post.is_approved and post.author == user %}
+        faded{% elif not post.is_approved %}d-none{% endif %}">
         <p>{{ post.body }}</p>
         {% if post.image %}
             <img src="{{ post.image.url }}" class="img-fluid mt-2" alt="Post image">
         {% endif %}
-        <small class="text-muted">Posted by {{ post.author }} on {{ post.created_at }}</small>
+        <small>Posted by {{ post.author }} on {{ post.created_at }}</small>
     </div>
 </div>
 
