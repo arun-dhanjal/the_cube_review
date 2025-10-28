@@ -14,6 +14,32 @@
         <small>Posted by {{ post.author }} on {{ post.created_at }}</small>
         {% if post.author == request.user %}
             <a href="{% url 'edit_post' post.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}">
+                Delete
+            </button>
+
+            <!-- Modal when deleting post -->
+            <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete your post? This can't be undone.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <form method="post" action="{% url 'delete_post' post.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         {% endif %}
     </div>
 </div>
@@ -37,7 +63,7 @@
                 Delete
             </button>
 
-            <!-- Modal for this comment -->
+            <!-- Modal when deleting comment -->
             <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ comment.pk }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

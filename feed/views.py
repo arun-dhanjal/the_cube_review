@@ -74,6 +74,16 @@ def edit_post(request, pk):
 
 
 @login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        return HttpResponseForbidden("You can't delete this post.")
+
+    post.delete()
+    return redirect("feed")
+
+
+@login_required
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
@@ -103,5 +113,3 @@ def delete_comment(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect("post_detail", pk=post_pk)
-
-
