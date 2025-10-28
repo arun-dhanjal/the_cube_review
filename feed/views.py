@@ -69,3 +69,14 @@ def edit_comment(request, pk):
         "form": form,
         "comment": comment,
     })
+
+
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if comment.author != request.user:
+        return HttpResponseForbidden("You can't delete this comment.")
+
+    post_pk = comment.post.pk
+    comment.delete()
+    return redirect("post_detail", pk=post_pk)
