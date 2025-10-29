@@ -38,12 +38,12 @@ body {
     border-radius: 0.5rem;
 }
 
-.view-post {
+.btn {
     color: white;
     background-color: #d35656;
 }
 
-.view-post:hover {
+.btn:hover {
     color: white;
     background-color: #e88686;
 }

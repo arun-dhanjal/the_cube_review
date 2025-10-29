@@ -17,11 +17,11 @@
         <a class="navbar-brand" href="{% url 'feed' %}"><i>The Cube Review</i></a>
         <div class="ms-auto">
             {% if user.is_authenticated %}
-                <a class="btn btn-outline-primary me-2" href="{% url 'create_post' %}">New Post</a>
-                <a class="btn btn-outline-secondary" href="{% url 'account_logout' %}">Logout</a>
+                <a class="btn me-2 shadow-sm" href="{% url 'create_post' %}">New Post</a>
+                <a class="btn shadow-sm" href="{% url 'account_logout' %}">Logout</a>
             {% else %}
-                <a class="btn btn-outline-primary" href="{% url 'account_login' %}">Login</a>
-                <a class="btn primary" href="{% url 'account_signup' %}">Sign Up</a>
+                <a class="btn shadow-sm" href="{% url 'account_login' %}">Login</a>
+                <a class="btn shadow-sm" href="{% url 'account_signup' %}">Sign Up</a>
             {% endif %}
         </div>
     </nav>
