@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.views import generic
+from django.db import models
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -9,10 +10,18 @@ from .forms import PostForm, CommentForm
 
 
 class Feed(generic.ListView):
-    queryset = Post.objects.all()
     template_name = "feed/feed.html"
     context_object_name = "posts"
     paginate_by = 3
+
+    # Conditional queryset to ensure that consistent number of posts appear on
+    # page regardless of any unapproved posts in feed.
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Post.objects.filter(models.Q(is_approved=True) | models.Q(author=user)).order_by("-created_at")
+        else:
+            return Post.objects.filter(is_approved=True).order_by("-created_at")
 
 
 def post_detail(request, pk):
