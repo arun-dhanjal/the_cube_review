@@ -65,45 +65,58 @@
                 <hr>
 
                 <!-- List of comments -->
-                <h3>Comments</h3>
+                <h3 class="mb-4">Comments</h3>
                 {% for comment in comments %}
-                    <div class="border p-2 mb-2
+                    <div class="card mb-4 shadow border-0
                         {% if not comment.is_approved and comment.author == user %}
                         faded{% elif not comment.is_approved %}d-none{% endif %}">
-                        <p>{{ comment.body }}</p>
-                        <small>{{ comment.author }} on {{ comment.created_at|date:"Y-m-d H:i" }}</small>
-                        {% if comment.updated_at > comment.created_at %}
-                            <br><small>(Edited on {{ comment.updated_at|date:"Y-m-d H:i" }})</small>
-                        {% endif %}
-                        {% if comment.author == request.user %}
-                            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm">Edit</a>
-                            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.pk }}">
-                                Delete
-                            </button>
+                        <div class="card-body">
 
-                            <!-- Modal when deleting comment -->
-                            <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ comment.pk }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel{{ comment.pk }}">Confirm Deletion</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete this comment?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                            <form method="post" action="{% url 'delete_comment' comment.pk %}">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn">Delete</button>
-                                            </form>
+                            <!-- Author -->
+                            <h5 class="card-title mb-0">{{ comment.author }}</h5>
+
+                            <!-- Date posted -->
+                            <p class="small mb-3">{{ comment.created_at|date:"l j F Y, H:i" }}</p><hr>
+
+                            <!-- Body -->
+                            <p class="card-text mb-3">{{ comment.body|linebreaks }}</p>
+
+                            <!-- Edited info -->
+                            {% if comment.updated_at > comment.created_at %}
+                                <p class="small text-muted">(Edited on {{ comment.updated_at|date:"Y-m-d H:i" }})</p>
+                            {% endif %}
+                        
+                            <!-- Buttons -->
+                            {% if comment.author == request.user %}
+                                <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm">Edit</a>
+                                <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.pk }}">
+                                    Delete
+                                </button>
+
+                                <!-- Modal when deleting comment -->
+                                <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ comment.pk }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ comment.pk }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this comment?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                <form method="post" action="{% url 'delete_comment' comment.pk %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn">Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        {% endif %}
+                            {% endif %}
+                        </div>
                     </div>
                 {% empty %}
                     <p>No comments yet.</p>
@@ -115,7 +128,7 @@
                     <form method="post">
                         {{ form | crispy }}
                         {% csrf_token %}
-                        <button type="submit" class="btn">Submit</button>
+                        <button type="submit" class="btn mb-3">Submit</button>
                     </form>
                 {% else %}
                     <h3>Log in to leave a comment!</h3>
