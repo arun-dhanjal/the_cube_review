@@ -1,3 +1,33 @@
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+.navbar {
+    /* background-color: rgb(255, 95, 95); */
+    background: linear-gradient(to right, #cd3535, #ff9999);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.navbar-brand i {
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+    text-shadow:
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black;
+    font-family: Arial, sans-serif;
+}
+
 .faded {
     color: rgb(172, 175, 175);
-}
+}   
