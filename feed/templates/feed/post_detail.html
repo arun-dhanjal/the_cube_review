@@ -5,20 +5,36 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-                <div class="card">   
-                    <div class="card-body
-                        {% if not post.is_approved and post.author == user %}
-                        faded{% elif not post.is_approved %}d-none{% endif %}">
-                        <p>{{ post.body }}</p>
+                <div class="card mb-4 shadow border-0
+                    {% if not post.is_approved and post.author == user %}
+                    faded{% elif not post.is_approved %}d-none{% endif %}">
+                    <!-- Card body -->
+                    <div class="card-body">
+
+                        <!-- Author -->
+                        <h3 class="card-title mb-0">{{post.author }}</h3>
+
+                        <!-- Date posted -->
+                        <p class="small mb-3">{{ post.created_at|date:"l j F Y, H:i" }}</p><hr>
+
+                        <!-- Main body -->
+                        <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
+
+                        <!-- Optional image -->
                         {% if post.image %}
-                            <img src="{{ post.image.url }}" class="img-fluid mt-2" alt="Post image">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ post.image.url }}" class="img-fluid mb-3 shadow rounded post-image" alt="Post image">
+                            </div>
                         {% endif %}
-                        <small>Posted by {{ post.author }} on {{ post.created_at }}</small>
+                        
+                        <!-- Edit and delete buttons -->
                         {% if post.author == request.user %}
-                            <a href="{% url 'edit_post' post.pk %}" class="btn btn-sm">Edit</a>
-                            <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}">
-                                Delete
-                            </button>
+                            <div class="d-flex flex-column align-items-center mt-3">
+                                <a href="{% url 'edit_post' post.pk %}" class="btn btn-sm mb-3">Edit</a>
+                                <button type="button" class="btn btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}">
+                                    Delete
+                                </button>
+                            </div>
 
                             <!-- Modal when deleting post -->
                             <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
