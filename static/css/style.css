@@ -47,3 +47,14 @@ body {
     color: white;
     background-color: #e88686;
 }
+
+.page-link {
+    color: white;
+    background-color: #d35656;
+}
+
+.page-indicator {
+    color: white;
+    background-color: #d35656;
+    pointer-events: none; /* prevents hover animation */
+}
