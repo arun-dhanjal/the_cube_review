@@ -2,35 +2,42 @@
 
 {% block content %}
     <!-- Code for the main post feed -->
-    <h2>Post Feed</h2>
-    {% for post in posts %}
-        <div class="card mb-4 shadow-sm border-0
-            {% if not post.is_approved and post.author == user %}
-            faded{% elif not post.is_approved %}d-none{% endif %}">
-            <!-- Card body -->
-            <div class="card-body">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+            {% for post in posts %}
+                <div class="card mb-4 shadow border-0
+                    {% if not post.is_approved and post.author == user %}
+                    faded{% elif not post.is_approved %}d-none{% endif %}">
+                    <!-- Card body -->
+                    <div class="card-body">
 
-                <!-- Author -->
-                <h3 class="card-title mb-0">{{post.author }}</h3>
+                        <!-- Author -->
+                        <h3 class="card-title mb-0">{{post.author }}</h3>
 
-                <!-- Date posted -->
-                <p class="small mb-3">{{ post.created_at|date:"l j F Y, H:i" }}</p><hr>
+                        <!-- Date posted -->
+                        <p class="small mb-3">{{ post.created_at|date:"l j F Y, H:i" }}</p><hr>
 
-                <!-- Main body -->
-                <p class="card-text">{{ post.body|linebreaks }}</p>
+                        <!-- Main body -->
+                        <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
 
-                <!-- Optional image -->
-                {% if post.image %}
-                    <img src="{{ post.image.url }}" class="img-fluid rounded-bottom" alt="Post image">
-                {% endif %}
+                        <!-- Optional image -->
+                        {% if post.image %}
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ post.image.url }}" class="img-fluid mb-3 shadow rounded post-image" alt="Post image">
+                            </div>
+                        {% endif %}
 
-                <!-- Full width View Post button -->
-                <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary w-100 rounded-0">View Post</a>
+                        <!-- Full width View Post button -->
+                        <a href="{% url 'post_detail' post.pk %}" class="view-post btn w-100 shadow rounded">View Post</a>
+                    </div>
+                </div>
+            {% empty %}
+            <p>No posts yet.</p>
+            {% endfor %}
             </div>
         </div>
-    {% empty %}
-    <p>No posts yet.</p>
-    {% endfor %}
+    </div>
 
     <!-- Code for the pagination buttons at the bottom of the post feed -->
     <nav aria-label="Page navigation">

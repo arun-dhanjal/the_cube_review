@@ -3,11 +3,10 @@ body {
 }
 
 .navbar {
-    /* background-color: rgb(255, 95, 95); */
     background: linear-gradient(to right, #cd3535, #ff9999);
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
 }
 
 .navbar-brand {
@@ -30,4 +29,21 @@ body {
 
 .faded {
     color: rgb(172, 175, 175);
-}   
+}
+
+.post-image {
+    max-height: 300px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.view-post {
+    color: white;
+    background-color: #d35656;
+}
+
+.view-post:hover {
+    color: white;
+    background-color: #e88686;
+}
