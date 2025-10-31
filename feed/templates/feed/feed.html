@@ -30,8 +30,8 @@
                             <!-- Awaiting approval indicator -->
                             <small class=
                                 "{%if not post.is_approved and post.author == user %}
-                                pending-approval{% elif not post.is_approved %}d-none{% endif %}">
-                                Pending approval.
+                                pending-approval{% else %}d-none{% endif %}">
+                                Pending approval
                             </small>
 
                             <hr>

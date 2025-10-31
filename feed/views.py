@@ -37,7 +37,7 @@ def post_detail(request, pk):
             comment.author = request.user
             comment.post = post
             comment.save()
-            messages.success(request, "Comment added - now awaiting approval. Comments will only show to other users once approved.")
+            messages.success(request, "Comment added - now pending approval. Comments will only show to other users once approved.")
             return redirect("post_detail", pk=post.pk)
 
     return render(request, "feed/post_detail.html", {
@@ -55,7 +55,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            messages.success(request, "New post added - now awaiting approval. Posts will only show on the public feed once approved.")
+            messages.success(request, "New post added - now pending approval. Posts will only show on the public feed once approved.")
             return redirect("feed")
     else:
         form = PostForm()
@@ -74,8 +74,9 @@ def edit_post(request, pk):
             post = form.save(commit=False)
             if form.cleaned_data.get("remove_image"):
                 post.image = None
+            post.is_approved = False
             post.save()
-            messages.success(request, "Post edited successfully - status changed to 'awaiting approval'.")
+            messages.success(request, "Post edited successfully - status changed to 'Pending approval'.")
             return redirect("post_detail", pk=post.pk)
     else:
         form = PostForm(instance=post)
@@ -106,8 +107,10 @@ def edit_comment(request, pk):
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Comment edited successfully - status changed to 'awaiting approval'.")
+            comment = form.save(commit=False)
+            comment.is_approved = False
+            comment.save()
+            messages.success(request, "Comment edited successfully - status changed to 'Pending approval'.")
             return redirect("post_detail", pk=comment.post.pk)
 
     else:
