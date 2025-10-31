@@ -7,9 +7,9 @@ from cloudinary.models import CloudinaryField
 
 class Puzzle(models.Model):
     CATEGORY_CHOICES = [
-        ('Cube', 'Standard Cube'),
-        ('Docecahedron', '12-Sided Puzzle'),
-        ('Special', 'Specialty Shape'),
+        ('Cube', 'Cube'),
+        ('Dodecahedron', 'Dodecahedron'),
+        ('Special', 'Special'),
     ]
 
     name = models.CharField(max_length=100)
