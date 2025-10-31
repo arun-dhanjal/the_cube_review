@@ -12,7 +12,8 @@ from .forms import ReviewForm
 class PuzzleList(generic.ListView):
     model = Puzzle
     template_name = "reviews/puzzle_list.html"
-    context_object_name = "puzzle_list""
+    context_object_name = "puzzles"
+    paginate_by = 3
 
 
 def puzzle_detail(request, pk):

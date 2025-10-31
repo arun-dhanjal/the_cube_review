@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Code for the puzzle list -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                <div class="text-center">
+                    <h2 class="mb-3">Puzzle Reviews</h2>
+                </div>
+                {% for puzzle in puzzles %}
+                    <div class="card mb-4 shadow border-0">
+                        <!-- Card body -->
+                        <div class="card-body">
+
+                            <!-- Puzzle name -->
+                            <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
+
+                            <!-- Puzzle category -->
+                            <p class="small mb-0">{{ puzzle.category }}</p>
+
+                            <!-- Puzzle average rating -->
+                            {% if puzzle.average_rating %}
+                                {% with avg=puzzle.average_rating %}
+                                    <span class="text-warning">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= avg|floatformat:0 %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% elif forloop.counter == avg|floatformat:0|add:"1" and avg|floatformat:1|stringformat:"s"|slice:"-1" == "5" %}
+                                            <i class="bi bi-star-half"></i>
+                                        {% else %}
+                                            <i class="bi bi-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </span>
+                                    <small class="text-muted">({{ puzzle.review_count }})</small>
+                                {% endwith %}
+                                {% else %}
+                                <small class="text-muted">No reviews yet</small>
+                            {% endif %}
+
+                            <hr>
+
+                            <!-- Puzzle image -->
+                            {% if puzzle.image %}
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ puzzle.image.url }}" class="img-fluid mb-3 shadow rounded puzzle-image" alt="Puzzle image">
+                                </div>
+                            {% endif %}
+
+                            <!-- Description -->
+                            <p class="card-text mb-3">{{ puzzle.description|truncatewords:20 }}</p>
+
+                            <!-- Full width See Reviews button -->
+                            <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded">See Reviews</a>
+                        </div>
+                    </div>
+                {% empty %}
+                <p>No puzzle reviews yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for the pagination buttons at the bottom of the puzzle list -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
+
+            <li class="page-item">
+                <span class="page-link page-indicator">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}
