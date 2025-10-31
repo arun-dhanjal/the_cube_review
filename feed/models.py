@@ -10,6 +10,7 @@ class Post(models.Model):
     image = CloudinaryField("image", blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     is_approved = models.BooleanField(default=False)
 
     class Meta:

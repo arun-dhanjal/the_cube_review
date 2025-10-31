@@ -29,6 +29,11 @@
                         <!-- Main body -->
                         <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
 
+                        <!-- Edited info -->
+                        {% if post.updated_at > post.created_at %}
+                            <p class="small">(Edited {{ post.updated_at|date:"l j F Y, H:i" }})</p>
+                        {% endif %}
+
                         <!-- Optional image -->
                         {% if post.image %}
                             <div class="d-flex justify-content-center">
