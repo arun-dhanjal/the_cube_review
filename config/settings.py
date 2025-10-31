@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'cloudinary',
     'feed',
+    'reviews',
 ]
 
 SITE_ID = 1
