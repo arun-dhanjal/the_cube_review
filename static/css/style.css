@@ -27,6 +27,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
+footer {
+    background: linear-gradient(to right, #cd3535, #ff9999);
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
 .faded {
     color: rgb(172, 175, 175);
 }
