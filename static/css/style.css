@@ -69,3 +69,8 @@ footer {
     background-color: #d35656;
     pointer-events: none; /* prevents hover animation */
 }
+
+.pending-approval {
+    color: #e88686;
+    font-weight: bold;
+}

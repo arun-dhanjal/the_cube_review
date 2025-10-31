@@ -25,7 +25,16 @@
                             <h3 class="card-title mb-0">{{ post.author }}</h3>
 
                             <!-- Date posted -->
-                            <p class="small mb-3">{{ post.created_at|date:"l j F Y, H:i" }}</p><hr>
+                            <p class="small mb-0">{{ post.created_at|date:"l j F Y, H:i" }}</p>
+
+                            <!-- Awaiting approval indicator -->
+                            <small class=
+                                "{%if not post.is_approved and post.author == user %}
+                                pending-approval{% elif not post.is_approved %}d-none{% endif %}">
+                                Pending approval.
+                            </small>
+
+                            <hr>
 
                             <!-- Main body -->
                             <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
