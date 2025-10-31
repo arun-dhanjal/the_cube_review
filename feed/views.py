@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponseForbidden
 from django.views import generic
 from django.db import models
@@ -36,6 +37,7 @@ def post_detail(request, pk):
             comment.author = request.user
             comment.post = post
             comment.save()
+            messages.success(request, "Comment added - now awaiting approval. Comments will only show to other users once approved.")
             return redirect("post_detail", pk=post.pk)
 
     return render(request, "feed/post_detail.html", {
@@ -53,6 +55,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, "New post added - now awaiting approval. Posts will only show on the public feed once approved.")
             return redirect("feed")
     else:
         form = PostForm()
@@ -72,6 +75,7 @@ def edit_post(request, pk):
             if form.cleaned_data.get("remove_image"):
                 post.image = None
             post.save()
+            messages.success(request, "Post edited successfully - status changed to 'awaiting approval'.")
             return redirect("post_detail", pk=post.pk)
     else:
         form = PostForm(instance=post)
@@ -89,6 +93,7 @@ def delete_post(request, pk):
         return HttpResponseForbidden("You can't delete this post.")
 
     post.delete()
+    messages.success(request, "Post deleted successfully.")
     return redirect("feed")
 
 
@@ -102,6 +107,7 @@ def edit_comment(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
+            messages.success(request, "Comment edited successfully - status changed to 'awaiting approval'.")
             return redirect("post_detail", pk=comment.post.pk)
 
     else:
@@ -121,4 +127,5 @@ def delete_comment(request, pk):
 
     post_pk = comment.post.pk
     comment.delete()
+    messages.success(request, "Comment deleted successfully.")
     return redirect("post_detail", pk=post_pk)
