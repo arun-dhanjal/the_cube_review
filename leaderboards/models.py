@@ -26,6 +26,7 @@ class TimeSubmission(models.Model):
     total_seconds = models.PositiveIntegerField(editable=False)
 
     submitted_at = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["total_seconds"]
