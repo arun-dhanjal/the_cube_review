@@ -48,7 +48,29 @@
                                 {% if time.user == request.user %}
                                     <div class="d-flex flex-column align-items-center mt-3">
                                         <a href="{% url 'update_time' time.pk %}" class="btn btn-sm mb-3">Update submission</a>
-                                        <button class="btn btn-sm mb-0" data-time-id="{{ time.pk }}">Delete submission</button>
+                                        <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete Submission</button>
+                                    </div>
+
+                                    <!-- Modal when deleting time submission -->
+                                    <div class="modal fade" id="deleteModal{{ time.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ time.pk }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ time.pk }}">Confirm Deletion</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete your time submission?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="post" action="{% url 'delete_time' time.pk %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 {% endif %}
 
