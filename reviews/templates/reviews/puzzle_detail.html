@@ -9,31 +9,33 @@
                         <!-- Card body -->
                         <div class="card-body">
 
-                            <!-- Puzzle name -->
-                            <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
+                            <div class="text-center">
+                                <!-- Puzzle name -->
+                                <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
 
-                            <!-- Puzzle category -->
-                            <p class="small mb-0">{{ puzzle.category }}</p>
+                                <!-- Puzzle category -->
+                                <p class="small mb-0">{{ puzzle.category }}</p>
 
-                            <!-- Puzzle average rating -->
-                            {% if puzzle.average_rating %}
-                            {% with avg=puzzle.average_rating %}
-                                <span class="text-warning">
-                                    {% for i in "12345" %}
-                                        {% if avg >= forloop.counter %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% elif avg >= forloop.counter|add:"-0.5" %}
-                                            <i class="bi bi-star-half"></i>
-                                        {% else %}
-                                            <i class="bi bi-star"></i>
-                                        {% endif %}
-                                    {% endfor %}
-                                </span>
-                                <small class="text-muted">({{ puzzle.review_count }})</small>
-                            {% endwith %}
-                            {% else %}
-                            <small class="text-muted">No reviews yet</small>
-                            {% endif %}
+                                <!-- Puzzle average rating -->
+                                {% if puzzle.average_rating %}
+                                {% with avg=puzzle.average_rating %}
+                                    <span class="text-warning">
+                                        {% for i in "12345" %}
+                                            {% if avg >= forloop.counter %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% elif avg >= forloop.counter|add:"-0.5" %}
+                                                <i class="bi bi-star-half"></i>
+                                            {% else %}
+                                                <i class="bi bi-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    <small class="text-muted">({{ puzzle.review_count }})</small>
+                                {% endwith %}
+                                {% else %}
+                                <small class="text-muted">No reviews yet</small>
+                                {% endif %}
+                            </div>
 
                             <hr>
 
@@ -47,8 +49,6 @@
                             <!-- Description -->
                             <p class="card-text mb-3">{{ puzzle.description|truncatewords:20 }}</p>
 
-                            <!-- Full width See Reviews button -->
-                            <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded">See Reviews</a>
                         </div>
                     </div>
 
