@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'feed',
     'reviews',
+    'leaderboards',
 ]
 
 SITE_ID = 1
