@@ -21,22 +21,24 @@
 
                             <!-- Puzzle average rating -->
                             {% if puzzle.average_rating %}
-                                {% with avg=puzzle.average_rating %}
-                                    <span class="text-warning">
+                            {% with avg=puzzle.average_rating|floatformat:1 %}
+                                {% with full=avg|floatformat:0 half=avg|stringformat:"s"|slice:"-1" %}
+                                <span class="text-warning">
                                     {% for i in "12345" %}
-                                        {% if forloop.counter <= avg|floatformat:0 %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% elif forloop.counter == avg|floatformat:0|add:"1" and avg|floatformat:1|stringformat:"s"|slice:"-1" == "5" %}
-                                            <i class="bi bi-star-half"></i>
-                                        {% else %}
-                                            <i class="bi bi-star"></i>
-                                        {% endif %}
+                                    {% if forloop.counter <= full %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% elif forloop.counter == full|add:"1" and half == "5" %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% else %}
+                                        <i class="bi bi-star"></i>
+                                    {% endif %}
                                     {% endfor %}
-                                    </span>
-                                    <small class="text-muted">({{ puzzle.review_count }})</small>
+                                </span>
+                                <small class="text-muted">({{ puzzle.review_count }})</small>
                                 {% endwith %}
-                                {% else %}
-                                <small class="text-muted">No reviews yet</small>
+                            {% endwith %}
+                            {% else %}
+                            <small class="text-muted">No reviews yet</small>
                             {% endif %}
 
                             <hr>

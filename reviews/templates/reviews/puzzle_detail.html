@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                    <div class="card mb-4 shadow border-0">
+                        <!-- Card body -->
+                        <div class="card-body">
+
+                            <!-- Puzzle name -->
+                            <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
+
+                            <!-- Puzzle category -->
+                            <p class="small mb-0">{{ puzzle.category }}</p>
+
+                            <!-- Puzzle average rating -->
+                            {% if puzzle.average_rating %}
+                            {% with avg=puzzle.average_rating|floatformat:1 %}
+                                {% with full=avg|floatformat:0 half=avg|stringformat:"s"|slice:"-1" %}
+                                <span class="text-warning">
+                                    {% for i in "12345" %}
+                                    {% if forloop.counter <= full %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% elif forloop.counter == full|add:"1" and half == "5" %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% else %}
+                                        <i class="bi bi-star"></i>
+                                    {% endif %}
+                                    {% endfor %}
+                                </span>
+                                <small class="text-muted">({{ puzzle.review_count }})</small>
+                                {% endwith %}
+                            {% endwith %}
+                            {% else %}
+                            <small class="text-muted">No reviews yet</small>
+                            {% endif %}
+
+                            <hr>
+
+                            <!-- Puzzle image -->
+                            {% if puzzle.image %}
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ puzzle.image.url }}" class="img-fluid mb-3 shadow rounded puzzle-image" alt="Puzzle image">
+                                </div>
+                            {% endif %}
+
+                            <!-- Description -->
+                            <p class="card-text mb-3">{{ puzzle.description|truncatewords:20 }}</p>
+
+                            <!-- Full width See Reviews button -->
+                            <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded">See Reviews</a>
+                        </div>
+                    </div>
+
+                <hr>
+
+                <!-- List of reviews -->
+                <h3 class="mb-4">Reviews</h3>
+                {% for review in reviews %}
+                    <div class="card mb-4 shadow border-0
+                        {% if not review.is_approved and review.author == user %}
+                        faded{% elif not review.is_approved %}d-none{% endif %}">
+                        <div class="card-body">
+
+                            <!-- Author -->
+                            <h5 class="card-title mb-0">{{ review.author }}</h5>
+
+                            <!-- Date posted -->
+                            <p class="small mb-0">{{ review.created_at|date:"l j F Y, H:i" }}</p>
+
+                            <!-- Awaiting approval indicator -->
+                            <small class=
+                                "{%if not review.is_approved and review.author == user %}
+                                pending-approval{% else %}d-none{% endif %}">
+                                Pending approval
+                            </small>
+
+                            <hr>
+
+                            <!-- Body -->
+                            <p class="card-text mb-3">{{ review.body|linebreaks }}</p>
+
+                            <!-- Edited info -->
+                            {% if review.updated_at > review.created_at %}
+                                <p class="small">(Edited {{ review.updated_at|date:"l j F Y, H:i" }})</p>
+                            {% endif %}
+                        
+                            <!-- Buttons -->
+                            {% if review.author == request.user %}
+                                <a href="{% url 'edit_review' review.pk %}" class="btn btn-sm">Edit</a>
+                                <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ review.pk }}">
+                                    Delete
+                                </button>
+
+                                <!-- Modal when deleting review -->
+                                <div class="modal fade" id="deleteModal{{ review.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ review.pk }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ review.pk }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this review?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                <form method="post" action="{% url 'delete_review' review.pk %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No reviews yet.</p>
+                {% endfor %}
+
+                <!-- Add review section -->
+                {% if user.is_authenticated %}
+                    <h3>Add a review:</h3>
+                    <form method="post">
+                        {{ form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn mb-3">Submit</button>
+                    </form>
+                {% else %}
+                    <h3>Log in to leave a review!</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

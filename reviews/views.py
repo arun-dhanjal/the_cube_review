@@ -31,7 +31,7 @@ def puzzle_detail(request, pk):
             messages.success(request, "Review added - now pending approval. Reviews will only show to other users once approved.")
             return redirect("puzzle_detail", pk=puzzle.pk)
 
-    return render(request, "feed/puzzle_detail.html", {
+    return render(request, "reviews/puzzle_detail.html", {
         "puzzle": puzzle,
         "reviews": reviews,
         "form": form,
@@ -56,7 +56,7 @@ def edit_review(request, pk):
     else:
         form = ReviewForm(instance=review)
 
-    return render(request, "feed/edit_review.html", {
+    return render(request, "reviews/edit_review.html", {
         "form": form,
         "review": review,
     })
