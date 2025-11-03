@@ -70,6 +70,17 @@
                             <!-- Date posted -->
                             <p class="small mb-0">{{ review.created_at|date:"l j F Y, H:i" }}</p>
 
+                            <!-- Rating -->
+                            <span class="text-warning">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                <i class="bi bi-star-fill"></i>
+                                {% else %}
+                                <i class="bi bi-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                            </span>
+
                             <!-- Awaiting approval indicator -->
                             <small class=
                                 "{%if not review.is_approved and review.author == user %}
