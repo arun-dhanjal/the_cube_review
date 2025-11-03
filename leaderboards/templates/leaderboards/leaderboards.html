@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!-- Code for the leaderboards page -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                <div class="text-center">
+                    {% if user.is_authenticated %}
+                    <h2 class="mb-3">Beaten your previous record? Share your success:</h2>
+                    <a class="btn me-2 shadow-sm mb-3" href="{% url 'submit_time' %}">Submit Time</a>
+                    {% else %}
+                    <h2 class="mb-3">Want to be on our leaderboards? Sign up now:</h2>
+                    <a class="btn shadow-sm mb-3" href="{% url 'account_signup' %}">Sign Up</a>
+                    {% endif %}
+                </div>
+
+                {% for puzzle in puzzles %}
+                    <div class="card mb-4 shadow border-0">
+                        <div class="card-body text-center">
+                            <!-- Puzzle Title -->
+                            <h3 class="card-title">{{ puzzle.name }}</h3>
+
+                            <!-- Leaderboard Table -->
+                            <table class="table table-sm table-striped align-middle equal-width-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Time</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for time in puzzle.times.all %}
+                                    <tr>
+                                        <td>{{ time.user.username }}</td>
+                                        <td>{{ time.hours }}h {{ time.minutes }}m {{ time.seconds }}s</td>
+                                        <td>{{ time.submitted_at|date:"j M Y" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Buttons -->
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Code for the pagination buttons at the bottom of the post feed -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
+
+            <li class="page-item">
+                <span class="page-link page-indicator">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}

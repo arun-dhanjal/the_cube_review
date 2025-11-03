@@ -74,3 +74,16 @@ footer {
     color: #e88686;
     font-weight: bold;
 }
+
+/* Prevents overflow in tables */
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ensures all columns in tables are the same width */
+.equal-width-table {
+  table-layout: fixed;
+  width: 100%;
+}

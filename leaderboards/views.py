@@ -11,7 +11,7 @@ from .forms import TimeSubmissionForm
 
 class Leaderboards(generic.ListView):
     model = Puzzle
-    template_name = "leaderboards.html"
+    template_name = "leaderboards/leaderboards.html"
     context_object_name = "puzzles"
 
     def get_queryset(self):
