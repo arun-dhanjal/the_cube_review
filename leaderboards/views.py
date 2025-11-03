@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseForbidden
+from django.db import IntegrityError
 from django.views import generic
 from .models import Puzzle, TimeSubmission
 from .forms import TimeSubmissionForm
@@ -22,10 +23,14 @@ def submit_time(request):
     if request.method == "POST":
         form = TimeSubmissionForm(request.POST)
         if form.is_valid():
-            submission = form.save(commit=False)
-            submission.user = request.user
-            submission.save()
-            return redirect("leaderboards")
+            time_submission = form.save(commit=False)
+            time_submission.user = request.user
+            try:
+                time_submission.save()
+                messages.success(request, "Your time has been submitted!")
+                return redirect("leaderboards")
+            except IntegrityError:
+                messages.error(request, "You can only have one submission for each puzzle. Please update your current time instead.")
     else:
         form = TimeSubmissionForm()
     return render(request, "leaderboards/submit_time.html", {"form": form})
