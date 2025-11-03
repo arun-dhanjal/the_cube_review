@@ -27,6 +27,22 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.nav-icon {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-icon:hover {
+  color: #d35656;
+  
+}
+
+.nav-icon.active {
+  color: #d35656; /* Bootstrap blue */
+  border-bottom: 2px solid #d35656;
+}
+
 footer {
     background: linear-gradient(to right, #cd3535, #ff9999);
     padding-top: 0.25rem;
