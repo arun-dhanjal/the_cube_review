@@ -43,7 +43,16 @@
                             </table>
 
                             <!-- Buttons -->
+                            {% for time in puzzle.times.all %}
+                            
+                                {% if time.user == request.user %}
+                                    <div class="d-flex flex-column align-items-center mt-3">
+                                        <a href="{% url 'update_time' time.pk %}" class="btn btn-sm mb-3">Update submission</a>
+                                        <button class="btn btn-sm mb-0" data-time-id="{{ time.pk }}">Delete submission</button>
+                                    </div>
+                                {% endif %}
 
+                            {% endfor %}
                         </div>
                     </div>
                 {% endfor %}

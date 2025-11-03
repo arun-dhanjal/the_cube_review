@@ -31,6 +31,7 @@ def submit_time(request):
                 return redirect("leaderboards")
             except IntegrityError:
                 messages.error(request, "You can only have one submission for each puzzle. Please update your current time instead.")
+
     else:
         form = TimeSubmissionForm()
     return render(request, "leaderboards/submit_time.html", {"form": form})
