@@ -22,10 +22,13 @@
                             <!-- Puzzle Title -->
                             <h3 class="card-title">{{ puzzle.name }}</h3>
 
+                            <hr>
+
                             <!-- Leaderboard Table -->
                             <table class="table table-sm table-striped align-middle equal-width-table mb-0">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>User</th>
                                         <th>Time</th>
                                         <th>Date</th>
@@ -34,6 +37,7 @@
                                 <tbody>
                                     {% for time in puzzle.times.all %}
                                     <tr>
+                                        <td>{{ forloop.counter }}</td>
                                         <td>{{ time.user.username }}</td>
                                         <td>{{ time.hours }}h {{ time.minutes }}m {{ time.seconds }}s</td>
                                         <td>{{ time.submitted_at|date:"j M Y" }}</td>
