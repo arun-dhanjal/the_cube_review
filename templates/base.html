@@ -20,19 +20,19 @@
         <div class="container-fluid flex-column flex-lg-row justify-content-between align-items-center">
 
             <!-- Site name -->
-            <a class="navbar-brand mb-0 d-flex align-items-center" href="{% url 'feed' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Rubiks cube" class="cube-logo me-3">
-                <i>The Cube Review</i>
+            <a class="navbar-brand my-3 d-flex align-items-center" href="{% url 'feed' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Rubiks cube logo" class="site-title me-3">
+                <img src="{% static 'images/site-title.png' %}" alt="Site title: The Cube Review" class="site-title">
             </a>
 
             <!-- Authentication -->
             <div class="d-flex flex-row align-items-center">
                 {% if user.is_authenticated %}
                     <span class="mb-3 mb-lg-0 me-lg-3 me-3 smaller-font"><strong>Logged in as {{ user }}</strong></span>
-                    <a class="btn shadow-sm mb-3 mb-lg-0 smaller-font" href="{% url 'account_logout' %}">Logout</a>
+                    <a class="btn light-shadow mb-3 mb-lg-0 smaller-font" href="{% url 'account_logout' %}">Logout</a>
                 {% else %}
-                    <a class="btn shadow-sm mb-3 mb-lg-0 me-3 smaller-font" href="{% url 'account_signup' %}">Sign Up</a>
-                    <a class="btn shadow-sm mb-3 mb-lg-0 smaller-font" href="{% url 'account_login' %}">Login</a>
+                    <a class="btn light-shadow mb-3 mb-lg-0 me-3 smaller-font" href="{% url 'account_signup' %}">Sign Up</a>
+                    <a class="btn light-shadow mb-3 mb-lg-0 smaller-font" href="{% url 'account_login' %}">Login</a>
                 {% endif %}
             </div>
 

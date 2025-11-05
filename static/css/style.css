@@ -9,13 +9,17 @@ body {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
 }
 
+.light-shadow {
+  box-shadow: 0 0 10px #e88686;
+}
+
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
     margin: 0;
 }
 
-.cube-logo {
+.site-title {
     height: 40px;
     width: auto;
 }
@@ -132,14 +136,10 @@ td {
   width: 100%;
 }
 
-/* Media query to ensure header shrinks on small screens to avoid overspill */
-@media (max-width: 576px) {
-  .cube-logo {
-    height: 30px;
-  }
-
-  .navbar-brand i {
-    font-size: 30px;
+/* Media query to ensure header shrinks on very small screens to avoid overspill */
+@media (max-width: 450px) {
+  .site-title {
+    height: 28px;
   }
 
   .smaller-font {
