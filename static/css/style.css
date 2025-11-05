@@ -63,6 +63,24 @@ footer {
     background-color: #e88686;
 }
 
+.edit-button {
+    color: #aeaeae;
+    transition: color 0.2s ease;
+}
+
+.edit-button:hover {
+    color: #d35656;
+}
+
+.delete-button {
+    color: #aeaeae;
+    transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+    color: #d35656;
+}
+
 .page-link {
     color: white;
     background-color: #d35656;
@@ -108,4 +126,9 @@ td {
 .equal-width-table {
   table-layout: fixed;
   width: 100%;
+}
+
+/* DELETE THIS BEFORE SUBMISSION!!! */
+.red-border {
+    border: 2px solid red;
 }
