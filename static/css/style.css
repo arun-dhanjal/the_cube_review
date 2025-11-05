@@ -53,13 +53,6 @@ footer {
     color: rgb(172, 175, 175);
 }
 
-.post-image {
-    max-height: 300px;
-    width: auto;
-    object-fit: cover;
-    border-radius: 0.5rem;
-}
-
 .btn {
     color: white;
     background-color: #d35656;
@@ -89,6 +82,19 @@ footer {
 .pending-approval {
     color: #e88686;
     font-weight: bold;
+}
+
+/* Ensures all images are in consistently sized square boxes */
+.image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 90%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
 }
 
 /* Prevents overflow in tables */
