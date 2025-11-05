@@ -11,7 +11,9 @@
 
                             <div class="text-center">
                                 <!-- Puzzle name -->
-                                <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
+                                <div>
+                                    <span class="fw-bold fs-3">{{ puzzle.name }}</span>
+                                </div>
 
                                 <!-- Puzzle category -->
                                 <p class="small mb-0">{{ puzzle.category }}</p>
@@ -19,7 +21,7 @@
                                 <!-- Puzzle average rating -->
                                 {% if puzzle.average_rating %}
                                 {% with avg=puzzle.average_rating %}
-                                    <span class="text-warning">
+                                    <span class="text-warning fs-3">
                                         {% if avg == 1 %}
                                             <i class="bi bi-star-fill"></i>
                                             <i class="bi bi-star"></i>
@@ -76,7 +78,7 @@
                                             <i class="bi bi-star-fill"></i>
                                         {% endif %}
                                     </span>
-                                    <small class="text-muted">({{ puzzle.review_count }})</small>
+                                    <small class="text-muted fs-3">({{ puzzle.review_count }})</small>
                                 {% endwith %}
                                 {% else %}
                                 <small class="text-muted">No reviews yet</small>
@@ -109,7 +111,7 @@
                         <div class="card-body">
 
                             <!-- Author and buttons -->
-                            <div class="card-title d-flex justify-content-between">
+                            <div class="card-title d-flex justify-content-between mb-0">
                                 <div>
                                     <span class="fw-bold fs-4">{{ review.author }}</span>
                                 </div>
@@ -147,19 +149,26 @@
                                 </div>
                             </div>
 
+                            <!-- Rating -->
+                            <div class="mb-1">
+                                <span class="text-warning fs-4">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= review.rating %}
+                                    <i class="bi bi-star-fill"></i>
+                                    {% else %}
+                                    <i class="bi bi-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                </span>
+                            </div>
+
                             <!-- Date posted -->
                             <p class="small mb-0">{{ review.created_at|date:"l j F Y, H:i" }}</p>
 
-                            <!-- Rating -->
-                            <span class="text-warning">
-                            {% for i in "12345" %}
-                                {% if forloop.counter <= review.rating %}
-                                <i class="bi bi-star-fill"></i>
-                                {% else %}
-                                <i class="bi bi-star"></i>
-                                {% endif %}
-                            {% endfor %}
-                            </span>
+                            <!-- Edited info -->
+                            {% if review.updated_at > review.created_at %}
+                                <p class="small mb-0">*Edited {{ review.updated_at|date:"l j F Y, H:i" }}</p>
+                            {% endif %}                            
 
                             <!-- Awaiting approval indicator -->
                             <small class=
@@ -172,11 +181,6 @@
 
                             <!-- Body -->
                             <p class="card-text mb-3">{{ review.body|linebreaks }}</p>
-
-                            <!-- Edited info -->
-                            {% if review.updated_at > review.created_at %}
-                                <p class="small">(Edited {{ review.updated_at|date:"l j F Y, H:i" }})</p>
-                            {% endif %}
                         
                         </div>
                     </div>

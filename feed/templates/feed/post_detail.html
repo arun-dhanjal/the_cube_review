@@ -53,6 +53,11 @@
                         <!-- Date posted -->
                         <p class="small mb-0">{{ post.created_at|date:"l j F Y, H:i" }}</p>
 
+                        <!-- Edited info -->
+                        {% if post.updated_at > post.created_at %}
+                            <p class="small mb-0">*Edited {{ post.updated_at|date:"l j F Y, H:i" }}</p>
+                        {% endif %}                        
+
                         <!-- Awaiting approval indicator -->
                         <small class=
                             "{%if not post.is_approved and post.author == user %}
@@ -63,16 +68,11 @@
                         <hr>
 
                         <!-- Main body -->
-                        <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
-
-                        <!-- Edited info -->
-                        {% if post.updated_at > post.created_at %}
-                            <p class="small">(Edited {{ post.updated_at|date:"l j F Y, H:i" }})</p>
-                        {% endif %}
+                        <p class="card-text">{{ post.body|linebreaks }}</p>
 
                         <!-- Optional image -->
                         {% if post.image %}
-                            <div class="d-flex justify-content-center align-items-center mb-3 image-box">
+                            <div class="d-flex justify-content-center align-items-center image-box">
                                 <img src="{{ post.image.url }}" class="shadow rounded" alt="Post image">
                             </div>
                         {% endif %}
@@ -83,7 +83,7 @@
                 <hr>
 
                 <!-- List of comments -->
-                <h3 class="mb-4">Comments</h3>
+                <h3 class="mb-3 fw-bold">Comments</h3>
                 {% for comment in comments %}
                     <div class="card mb-4 shadow border-0
                         {% if not comment.is_approved and comment.author == user %}
@@ -132,6 +132,11 @@
                             <!-- Date posted -->
                             <p class="small mb-0">{{ comment.created_at|date:"l j F Y, H:i" }}</p>
 
+                            <!-- Edited info -->
+                            {% if comment.updated_at > comment.created_at %}
+                                <p class="small mb-0">*Edited {{ comment.updated_at|date:"l j F Y, H:i" }}</p>
+                            {% endif %}                            
+
                             <!-- Awaiting approval indicator -->
                             <small class=
                                 "{%if not comment.is_approved and comment.author == user %}
@@ -143,11 +148,6 @@
 
                             <!-- Body -->
                             <p class="card-text mb-3">{{ comment.body|linebreaks }}</p>
-
-                            <!-- Edited info -->
-                            {% if comment.updated_at > comment.created_at %}
-                                <p class="small">(Edited {{ comment.updated_at|date:"l j F Y, H:i" }})</p>
-                            {% endif %}
                         
                         </div>
                     </div>
@@ -157,14 +157,14 @@
 
                 <!-- Add comment section -->
                 {% if user.is_authenticated %}
-                    <h3>Add a comment:</h3>
+                    <h3 class="fw-bold">Add a comment:</h3>
                     <form method="post">
                         {{ form | crispy }}
                         {% csrf_token %}
                         <button type="submit" class="btn mb-3">Submit</button>
                     </form>
                 {% else %}
-                    <h3>Log in to leave a comment!</h3>
+                    <h3 class="fw-bold text-center mb-3">Log in to leave a comment!</h3>
                 {% endif %}
             </div>
         </div>

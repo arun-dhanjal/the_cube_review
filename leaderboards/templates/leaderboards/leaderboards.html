@@ -8,10 +8,10 @@
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div class="text-center">
                     {% if user.is_authenticated %}
-                    <h2 class="mb-3">Set a new record? Share your success:</h2>
+                    <h2 class="mb-3 fw-bold">Set a new record? Share your success:</h2>
                     <a class="btn me-2 shadow-sm mb-3" href="{% url 'submit_time' %}">Submit Time</a>
                     {% else %}
-                    <h2 class="mb-3">Want to be on our leaderboards? Sign up now:</h2>
+                    <h2 class="mb-3 fw-bold">Want to be on our leaderboards? Sign up now:</h2>
                     <a class="btn shadow-sm mb-3" href="{% url 'account_signup' %}">Sign Up</a>
                     {% endif %}
                 </div>
@@ -20,7 +20,9 @@
                     <div class="card mb-4 shadow border-0">
                         <div class="card-body text-center">
                             <!-- Puzzle Title -->
-                            <h3 class="card-title">{{ puzzle.name }}</h3>
+                            <div>
+                                    <span class="fw-bold fs-3">{{ puzzle.name }}</span>
+                                </div>
 
                             <hr>
 

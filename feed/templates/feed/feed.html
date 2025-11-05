@@ -7,10 +7,10 @@
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div class="text-center">
                     {% if user.is_authenticated %}
-                    <h2 class="mb-3">Hi {{ user }}, what's new with you?</h2>
+                    <h2 class="mb-3 fw-bold">Hi {{ user }}, what's new with you?</h2>
                     <a class="btn me-2 shadow-sm mb-3" href="{% url 'create_post' %}">New Post</a>
                     {% else %}
-                    <h2 class="mb-3">Want to join the conversation? Sign up now!</h2>
+                    <h2 class="mb-3 fw-bold">Want to join the conversation? Sign up now!</h2>
                     <a class="btn shadow-sm mb-3" href="{% url 'account_signup' %}">Sign Up</a>
                     {% endif %}
                 </div>
@@ -21,11 +21,52 @@
                         <!-- Card body -->
                         <div class="card-body">
 
-                            <!-- Author -->
-                            <h3 class="card-title mb-0">{{ post.author }}</h3>
+                            <!-- Author and buttons -->
+                            <div class="card-title d-flex justify-content-between">
+                                <div>
+                                    <span class="fw-bold fs-3">{{post.author }}</span>
+                                </div>
+                                <div>
+                                    <!-- Edit and delete buttons -->
+                                    {% if post.author == request.user %}
+                                        <div>
+                                            <a href="{% url 'edit_post' post.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-4"></i></a>
+                                            <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}"><i class="bi bi-trash fs-4"></i></a>
+                                        </div>
+
+                                        <!-- Modal when deleting post -->
+                                        <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete your post? This can't be undone.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                        <form method="post" action="{% url 'delete_post' post.pk %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+                                </div>
+                            </div>
 
                             <!-- Date posted -->
                             <p class="small mb-0">{{ post.created_at|date:"l j F Y, H:i" }}</p>
+
+                            <!-- Edited info -->
+                            {% if post.updated_at > post.created_at %}
+                                <p class="small mb-0">*Edited {{ post.updated_at|date:"l j F Y, H:i" }}</p>
+                            {% endif %}                            
 
                             <!-- Awaiting approval indicator -->
                             <small class=
@@ -37,16 +78,11 @@
                             <hr>
 
                             <!-- Main body -->
-                            <p class="card-text mb-3">{{ post.body|linebreaks }}</p>
-
-                            <!-- Edited info -->
-                            {% if post.updated_at > post.created_at %}
-                                <p class="small">(Edited {{ post.updated_at|date:"l j F Y, H:i" }})</p>
-                            {% endif %}
+                            <p class="card-text">{{ post.body|linebreaks }}</p>
 
                             <!-- Optional image -->
                             {% if post.image %}
-                                <div class="d-flex justify-content-center align-items-center mb-3 image-box">
+                                <div class="d-flex justify-content-center align-items-center image-box">
                                     <img src="{{ post.image.url }}" class="shadow rounded" alt="Post image">
                                 </div>
                             {% endif %}

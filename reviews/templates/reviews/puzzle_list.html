@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div class="text-center">
-                    <h2 class="mb-3">Puzzle Reviews</h2>
+                    <h2 class="mb-3 fw-bold">Puzzle Reviews</h2>
                 </div>
                 {% for puzzle in puzzles %}
                     <div class="card mb-4 shadow border-0">
@@ -15,7 +15,9 @@
                             
                             <div class="text-center">
                                 <!-- Puzzle name -->
-                                <h3 class="card-title mb-0">{{ puzzle.name }}</h3>
+                                <div>
+                                    <span class="fw-bold fs-3">{{ puzzle.name }}</span>
+                                </div>
 
                                 <!-- Puzzle category -->
                                 <p class="small mb-0">{{ puzzle.category }}</p>
@@ -23,7 +25,7 @@
                                 <!-- Puzzle average rating -->
                                 {% if puzzle.average_rating %}
                                 {% with avg=puzzle.average_rating %}
-                                    <span class="text-warning">
+                                    <span class="text-warning fs-3">
                                         {% if avg == 1 %}
                                             <i class="bi bi-star-fill"></i>
                                             <i class="bi bi-star"></i>
@@ -80,7 +82,7 @@
                                             <i class="bi bi-star-fill"></i>
                                         {% endif %}
                                     </span>
-                                    <small class="text-muted">({{ puzzle.review_count }})</small>
+                                    <small class="text-muted fs-3">({{ puzzle.review_count }})</small>
                                 {% endwith %}
                                 {% else %}
                                 <small class="text-muted">No reviews yet</small>
@@ -91,7 +93,7 @@
 
                             <!-- Puzzle image -->
                             {% if puzzle.image %}
-                                <div class="d-flex justify-content-center align-items-center mb-3 image-box">
+                                <div class="d-flex justify-content-center align-items-center image-box">
                                     <img src="{{ puzzle.image.url }}" class="shadow rounded" alt="Puzzle image">
                                 </div>
                             {% endif %}
