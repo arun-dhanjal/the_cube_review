@@ -6,4 +6,5 @@ from .models import TimeSubmission
 
 @admin.register(TimeSubmission)
 class TimeSubmission(admin.ModelAdmin):
-    list_display = ("__str__",)
+    list_display = ("__str__", "puzzle", "user")
+    list_filter = ("puzzle", "user")

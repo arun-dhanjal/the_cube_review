@@ -5,14 +5,15 @@ from .models import Puzzle, Review
 
 
 @admin.register(Puzzle)
-class PostAdmin(admin.ModelAdmin):
-    list_display = ("__str__",)
+class PuzzleAdmin(admin.ModelAdmin):
+    list_display = ("name", "category")
+    list_filter = ("category",)
 
 
 @admin.register(Review)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "author", "created_at", "is_approved")
-    list_filter = ("is_approved",)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ("__str__", "puzzle", "author", "created_at", "is_approved")
+    list_filter = ("puzzle", "author", "is_approved",)
     actions = ["approve_reviews"]
 
     def approve_reviews(self, request, queryset):

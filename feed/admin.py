@@ -7,7 +7,7 @@ from .models import Post, Comment
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ("__str__", "author", "created_at", "is_approved")
-    list_filter = ("is_approved",)
+    list_filter = ("author", "is_approved",)
     actions = ["approve_posts"]
 
     def approve_posts(self, request, queryset):
@@ -18,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("__str__", "author", "created_at", "is_approved")
-    list_filter = ("is_approved",)
+    list_filter = ("author", "is_approved",)
     actions = ["approve_comments"]
 
     def approve_comments(self, request, queryset):
