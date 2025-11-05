@@ -19,6 +19,7 @@
         <a class="navbar-brand" href="{% url 'feed' %}"><i>The Cube Review</i></a>
         <div class="ms-auto">
             {% if user.is_authenticated %}
+                <span class="me-3"><strong>Logged in as {{ user }}</strong></span>
                 <a class="btn shadow-sm" href="{% url 'account_logout' %}">Logout</a>
             {% else %}
                 <a class="btn shadow-sm" href="{% url 'account_signup' %}">Sign Up</a>
