@@ -97,7 +97,7 @@
                             {% endif %}
 
                             <!-- Description -->
-                            <p class="card-text mb-3">{{ puzzle.description|truncatewords:20 }}</p>
+                            <p class="card-text mb-3">{{ puzzle.description }}</p>
 
                             <!-- Full width See Reviews button -->
                             <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded">See Reviews</a>
