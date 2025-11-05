@@ -2,10 +2,15 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
+.cube-logo {
+    height: 40px;
+    width: auto;
+}
+
 .navbar {
     background: linear-gradient(to right, #cd3535, #ff9999);
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: 0;
+    padding-bottom: 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
 }
 

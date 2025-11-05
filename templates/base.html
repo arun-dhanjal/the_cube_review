@@ -15,16 +15,26 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!-- Site header -->
-    <nav class="navbar navbar-expand-lg px-3 sticky-top mb-3">
-        <a class="navbar-brand" href="{% url 'feed' %}"><i>The Cube Review</i></a>
-        <div class="ms-auto">
-            {% if user.is_authenticated %}
-                <span class="me-3"><strong>Logged in as {{ user }}</strong></span>
-                <a class="btn shadow-sm" href="{% url 'account_logout' %}">Logout</a>
-            {% else %}
-                <a class="btn shadow-sm" href="{% url 'account_signup' %}">Sign Up</a>
-                <a class="btn shadow-sm" href="{% url 'account_login' %}">Login</a>
-            {% endif %}
+    <nav class="navbar sticky-top mb-3">
+        <div class="container-fluid flex-column flex-lg-row justify-content-between align-items-center">
+
+            <!-- Site name -->
+            <a class="navbar-brand mb-0 d-flex align-items-center" href="{% url 'feed' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Rubiks cube" class="cube-logo me-3">
+                <i>The Cube Review</i>
+            </a>
+
+            <!-- Authentication -->
+            <div class="d-flex flex-row align-items-center">
+                {% if user.is_authenticated %}
+                    <span class="mb-3 mb-lg-0 me-lg-3 me-3"><strong>Logged in as {{ user }}</strong></span>
+                    <a class="btn shadow-sm mb-3 mb-lg-0" href="{% url 'account_logout' %}">Logout</a>
+                {% else %}
+                    <a class="btn shadow-sm mb-3 mb-lg-0 me-3" href="{% url 'account_signup' %}">Sign Up</a>
+                    <a class="btn shadow-sm mb-3 mb-lg-0" href="{% url 'account_login' %}">Login</a>
+                {% endif %}
+            </div>
+
         </div>
     </nav>
 
