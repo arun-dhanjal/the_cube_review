@@ -28,11 +28,11 @@
             <!-- Authentication -->
             <div class="d-flex flex-row align-items-center">
                 {% if user.is_authenticated %}
-                    <span class="mb-3 mb-lg-0 me-lg-3 me-3"><strong>Logged in as {{ user }}</strong></span>
-                    <a class="btn shadow-sm mb-3 mb-lg-0" href="{% url 'account_logout' %}">Logout</a>
+                    <span class="mb-3 mb-lg-0 me-lg-3 me-3 smaller-font"><strong>Logged in as {{ user }}</strong></span>
+                    <a class="btn shadow-sm mb-3 mb-lg-0 smaller-font" href="{% url 'account_logout' %}">Logout</a>
                 {% else %}
-                    <a class="btn shadow-sm mb-3 mb-lg-0 me-3" href="{% url 'account_signup' %}">Sign Up</a>
-                    <a class="btn shadow-sm mb-3 mb-lg-0" href="{% url 'account_login' %}">Login</a>
+                    <a class="btn shadow-sm mb-3 mb-lg-0 me-3 smaller-font" href="{% url 'account_signup' %}">Sign Up</a>
+                    <a class="btn shadow-sm mb-3 mb-lg-0 smaller-font" href="{% url 'account_login' %}">Login</a>
                 {% endif %}
             </div>
 

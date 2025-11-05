@@ -2,11 +2,6 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
-.cube-logo {
-    height: 40px;
-    width: auto;
-}
-
 .navbar {
     background: linear-gradient(to right, #cd3535, #ff9999);
     padding-top: 0;
@@ -20,6 +15,10 @@ body {
     margin: 0;
 }
 
+.cube-logo {
+    height: 40px;
+    width: auto;
+}
 .navbar-brand i {
     font-size: 40px;
     font-weight: bolder;
@@ -131,6 +130,21 @@ td {
 .equal-width-table {
   table-layout: fixed;
   width: 100%;
+}
+
+/* Media query to ensure header shrinks on small screens to avoid overspill */
+@media (max-width: 576px) {
+  .cube-logo {
+    height: 30px;
+  }
+
+  .navbar-brand i {
+    font-size: 30px;
+  }
+
+  .smaller-font {
+    font-size: 0.75rem;
+  }
 }
 
 /* DELETE THIS BEFORE SUBMISSION!!! */
