@@ -14,6 +14,7 @@ class Leaderboards(generic.ListView):
     model = Puzzle
     template_name = "leaderboards/leaderboards.html"
     context_object_name = "puzzles"
+    paginate_by = 5
 
     def get_queryset(self):
         return Puzzle.objects.prefetch_related("times")

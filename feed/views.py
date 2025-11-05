@@ -13,7 +13,7 @@ from .forms import PostForm, CommentForm
 class Feed(generic.ListView):
     template_name = "feed/feed.html"
     context_object_name = "posts"
-    paginate_by = 3
+    paginate_by = 5
 
     # Conditional queryset to ensure that consistent number of posts appear on
     # page regardless of any unapproved posts in feed.

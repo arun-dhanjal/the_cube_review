@@ -13,7 +13,7 @@ class PuzzleList(generic.ListView):
     model = Puzzle
     template_name = "reviews/puzzle_list.html"
     context_object_name = "puzzles"
-    paginate_by = 3
+    paginate_by = 5
 
 
 def puzzle_detail(request, pk):
