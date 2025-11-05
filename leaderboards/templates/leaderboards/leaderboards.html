@@ -27,7 +27,7 @@
                             <hr>
 
                             <!-- Leaderboard Table -->
-                            <table class="table table-sm table-striped align-middle equal-width-table mb-0">
+                            <table class="table align-middle equal-width-table mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -38,7 +38,9 @@
                                 </thead>
                                 <tbody>
                                     {% for time in puzzle.times.all %}
-                                    <tr>
+                                    <tr class=
+                                        "{% if time.user == request.user %}
+                                        fw-bold{% else %}{% endif %}">
                                         <td>{{ forloop.counter }}</td>
                                         <td>{{ time.user.username }}</td>
                                         <td>{{ time.hours }}h {{ time.minutes }}m {{ time.seconds }}s</td>
@@ -52,8 +54,8 @@
                             {% for time in puzzle.times.all %}
                             
                                 {% if time.user == request.user %}
-                                    <div class="d-flex flex-column align-items-center mt-3">
-                                        <a href="{% url 'update_time' time.pk %}" class="btn btn-sm mb-3">Update submission</a>
+                                    <div class="d-flex flex-row justify-content-center mt-3 gap-3">
+                                        <a href="{% url 'update_time' time.pk %}" class="btn btn-sm">Update submission</a>
                                         <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete Submission</button>
                                     </div>
 
