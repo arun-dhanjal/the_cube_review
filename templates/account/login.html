@@ -4,14 +4,16 @@
 {% block content %}
 <div class="container d-flex justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+        <!-- Bootstrap card containing login form -->
         <div class="card shadow border-0 mb-3">
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">Log In</h2>
+                <h2 class="card-title text-center mb-3 fw-bold">Log In</h2>
+                <!-- Crispy Forms package used to create login fields -->
                 <form method="post" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form|crispy }}
+                    {% csrf_token %}
+                    {{ form|crispy }}
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn">Log In</button>
+                        <button type="submit" class="btn" aria-label="Submit login form">Log In</button>
                     </div>
                 </form>
             </div>
