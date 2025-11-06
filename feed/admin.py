@@ -7,9 +7,10 @@ from .models import Post, Comment
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     """
-    Admin configuration for the Post model.
+    Admin configuration for :model:`feed.Post`.
 
     Displays post metadata and approval status.
+
     Includes a custom action to bulk-approve selected posts.
     """
     list_display = ("__str__", "author", "created_at", "is_approved")
@@ -25,9 +26,10 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     """
-    Admin configuration for the Comment model.
+    Admin configuration for :model:`feed.Comment`.
 
     Displays comment metadata and approval status.
+
     Includes a custom action to bulk-approve selected comments.
     """
     list_display = ("__str__", "author", "created_at", "is_approved")

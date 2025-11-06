@@ -5,6 +5,11 @@ from .models import TimeSubmission
 
 
 @admin.register(TimeSubmission)
-class TimeSubmission(admin.ModelAdmin):
+class TimeSubmissionAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for :model:`leaderboard.TimeSubmission`.
+
+    Displays submission string, puzzle, and user.
+    """
     list_display = ("__str__", "puzzle", "user")
     list_filter = ("puzzle", "user")

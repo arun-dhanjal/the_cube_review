@@ -1,13 +1,43 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from reviews.models import Puzzle
 
 # Create your models here.
 
 
 class TimeSubmission(models.Model):
-    puzzle = models.ForeignKey(Puzzle, related_name="times", on_delete=models.CASCADE)
+    """
+    Represents a time-based submission for a :model:`reviews.Puzzle`.
+
+    Stores hours, minutes, and seconds, and calculates total time in seconds.
+
+    **Fields**
+
+    ``puzzle``
+        The puzzle being solved.
+    ``user``
+        The user who submitted the time.
+    ``hours``, ``minutes``, ``seconds``
+        Time components with validation.
+    ``total_seconds``
+        Computed total time in seconds (non-editable).
+    ``submitted_at``
+        Timestamp of submission.
+
+    **Meta**
+
+    ``ordering``
+        Submissions are ordered by total time.
+    ``unique_together``
+        Each user can submit only one time per puzzle.
+    """
+    puzzle = models.ForeignKey(
+        Puzzle,
+        related_name="times",
+        on_delete=models.CASCADE
+        )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     hours = models.PositiveIntegerField(
@@ -29,17 +59,29 @@ class TimeSubmission(models.Model):
 
     class Meta:
         ordering = ["total_seconds"]
-        unique_together = ("user", "puzzle")  # Ensures only one user submission per puzzle
+        unique_together = ("user", "puzzle")
 
-    # Ensures zero times can't be submitted
     def clean(self):
+        """
+        Validates that the submitted time is greater than zero.
+        """
         if self.hours == 0 and self.minutes == 0 and self.seconds == 0:
             raise ValidationError("Time must be greater than zero.")
 
-    # Saves total_seconds as its own field based on inputs of hours, minutes, and seconds
     def save(self, *args, **kwargs):
-        self.total_seconds = self.hours * 3600 + self.minutes * 60 + self.seconds
+        """
+        Calculates and stores total time in seconds before saving.
+        """
+        self.total_seconds = (
+            self.hours * 3600 + self.minutes * 60 + self.seconds
+        )
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.user} | {self.puzzle} | {self.hours}h {self.minutes}m {self.seconds}s"
+        """
+        Returns a readable string representation of the submission.
+        """
+        return (
+            f"{self.user} | {self.puzzle} | "
+            f"{self.hours}h {self.minutes}m {self.seconds}s"
+        )
