@@ -37,6 +37,10 @@ body {
     font-size: 40px;
 }
 
+.icon-navigation {
+    background-color: rgb(245, 245, 245);
+}
+
 .nav-icon {
   color: #000000;
   text-decoration: none;

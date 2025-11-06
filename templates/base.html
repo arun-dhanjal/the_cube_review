@@ -9,8 +9,11 @@
     <meta name="description" content="Join a friendly community of twisty puzzle enthusiasts at The Cube Review. Share your thoughts, comment on posts, review your favourite puzzles, and track your rank on our community leaderboards. Everyone is welcome — from beginners to seasoned experts.">
     <title>The Cube Review</title>
     <link rel="icon" type="image/png" href="{% static 'favicon/favicon.png' %}">
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
@@ -22,7 +25,7 @@
 
             <!-- Site name -->
             <a class="navbar-brand my-3 d-flex align-items-center" href="{% url 'feed' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Rubiks cube logo" class="site-title me-3">
+                <img src="{% static 'images/logo.png' %}" alt="Logo: Rubiks cube" class="site-title me-3">
                 <img src="{% static 'images/site-title.png' %}" alt="Site title: The Cube Review" class="site-title">
             </a>
 
@@ -43,23 +46,31 @@
     <!-- Icon navigation -->
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex justify-content-evenly gap-4">
-                <a href="{% url 'feed' %}" class="nav-icon {% if request.resolver_match.url_name == 'feed' %}active{% endif %}" aria-label="Home">
-                    <i class="bi bi-house-door-fill fs-1"></i>
-                </a>
-                <a href="{% url 'puzzle_list' %}" class="nav-icon {% if request.resolver_match.url_name == 'puzzle_list' %}active{% endif %}" aria-label="Reviews">
-                    <i class="bi bi-star-fill fs-1"></i>
-                    <i class="bi bi-star-half fs-1"></i>
-                    <i class="bi bi-star fs-1"></i>
-                </a>
-                <a href="{% url 'leaderboards' %}" class="nav-icon {% if request.resolver_match.url_name == 'leaderboards' %}active{% endif %}" aria-label="Leaderboards">
-                    <i class="bi bi-trophy-fill fs-1"></i>
-                </a>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex flex-column align-items-center gap-4">
+
+                <!-- Icons -->
+                <div class="d-flex justify-content-evenly w-100">
+                    <a href="{% url 'feed' %}" class="nav-icon {% if request.resolver_match.url_name == 'feed' %}active{% endif %}" aria-label="Home">
+                        <i class="bi bi-house-door-fill fs-1"></i>
+                    </a>
+                    <a href="{% url 'puzzle_list' %}" class="nav-icon {% if request.resolver_match.url_name == 'puzzle_list' %}active{% endif %}" aria-label="Reviews">
+                        <i class="bi bi-star-fill fs-1"></i>
+                        <i class="bi bi-star-half fs-1"></i>
+                        <i class="bi bi-star fs-1"></i>
+                    </a>
+                    <a href="{% url 'leaderboards' %}" class="nav-icon {% if request.resolver_match.url_name == 'leaderboards' %}active{% endif %}" aria-label="Leaderboards">
+                        <i class="bi bi-trophy-fill fs-1"></i>
+                    </a>
+                </div>
+
+                <!-- Separator line -->
+                <hr class="w-100 my-0">
+
             </div>
         </div>
     </div>
 
-    <!-- Messages -->
+    <!-- User action feedback messages -->
      {% if messages %}
         <div class="container mt-3">
             {% for message in messages %}
@@ -71,18 +82,20 @@
         </div>
     {% endif %}
 
-    <div class="container mt-4">
+    <!-- Main block content to display child templates in other apps -->
+    <div class="container mt-3">
         {% block content %}{% endblock %}
     </div>
 
     <!-- Site footer -->
-     <footer class="text-center py-4 mt-auto shadow-sm">
+    <footer class="text-center py-4 mt-auto shadow-sm">
         <div class="container">
             <p class="mb-0">© {% now "Y" %} The Cube Review</p>
             <small class="text-muted">Built with Django, Bootstrap, and a twist of logic.</small>
         </div>
-     </footer>
+    </footer>
 
+    <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> 
 
 </body>

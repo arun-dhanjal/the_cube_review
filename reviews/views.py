@@ -47,7 +47,7 @@ def puzzle_detail(request, pk):
     """
     puzzle = get_object_or_404(Puzzle, pk=pk)
     reviews = puzzle.reviews.all()
-    form = ReviewForm
+    form = ReviewForm()
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
