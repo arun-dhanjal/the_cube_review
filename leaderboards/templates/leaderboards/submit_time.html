@@ -5,11 +5,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-                <h2>Submit your Time</h2>
+                <h2 class= "mb-3 fw-bold">Submit your Time</h2>
+                <!-- Crispy Forms package used to create form fields -->
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn mb-3">Submit</button>
+                    <button type="submit" class="btn mb-3" aria-label="Confirm submission">Submit</button>
                 </form>
             </div>
         </div>

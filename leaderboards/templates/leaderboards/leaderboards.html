@@ -2,10 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <!-- Code for the leaderboards page -->
+    <!-- Bootstrap container dynamically adjusts page content width according to screen size -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+
+                <!-- Welcome message - changes depending on login status -->
                 <div class="text-center">
                     {% if user.is_authenticated %}
                     <h2 class="mb-3 fw-bold">Set a new record? Share your success:</h2>
@@ -16,89 +18,109 @@
                     {% endif %}
                 </div>
 
+                <!-- List of leaderboards -->
                 {% for puzzle in puzzles %}
                     <div class="card mb-4 shadow border-0">
+
+                        <!-- Card body -->
                         <div class="card-body text-center">
+
                             <!-- Puzzle Title -->
                             <div>
-                                    <span class="fw-bold fs-3">{{ puzzle.name }}</span>
-                                </div>
+                                <span class="fw-bold fs-3">{{ puzzle.name }}</span>
+                            </div>
 
                             <hr>
 
-                            <!-- Leaderboard Table -->
-                            <table class="table align-middle mb-0">
-                                <colgroup>
-                                    <col style="width: 10%;">
-                                    <col style="width: 40%;">
-                                    <col style="width: 25%;">
-                                    <col style="width: 25%;">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>User</th>
-                                        <th>Time</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for time in puzzle.times.all %}
-                                    <tr class=
-                                        "{% if time.user == request.user %}
-                                        fw-bold{% else %}{% endif %}">
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>{{ time.user.username }}</td>
-                                        <td>{{ time.hours }}h {{ time.minutes }}m {{ time.seconds }}s</td>
-                                        <td>{{ time.submitted_at|date:"j M Y" }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                            {% if puzzle.times.all %}
+                                <!-- Leaderboard table -->
+                                <table class="table align-middle mb-0">
 
-                            <!-- Buttons -->
-                            {% for time in puzzle.times.all %}
-                            
-                                {% if time.user == request.user %}
-                                    <div class="d-flex flex-row justify-content-center mt-3 gap-3">
-                                        <a href="{% url 'update_time' time.pk %}" class="btn btn-sm">Update submission</a>
-                                        <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete Submission</button>
-                                    </div>
+                                    <!-- Column width settings -->
+                                    <colgroup>
+                                        <col style="width: 10%;">
+                                        <col style="width: 40%;">
+                                        <col style="width: 25%;">
+                                        <col style="width: 25%;">
+                                    </colgroup>
 
-                                    <!-- Modal when deleting time submission -->
-                                    <div class="modal fade" id="deleteModal{{ time.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ time.pk }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel{{ time.pk }}">Confirm Deletion</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete your time submission?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                                    <form method="post" action="{% url 'delete_time' time.pk %}">
-                                                        {% csrf_token %}
-                                                        <button type="submit" class="btn">Delete</button>
-                                                    </form>
+                                    <!-- Column headers -->
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>User</th>
+                                            <th>Time</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Table records -->
+                                    <tbody>
+                                        <!-- For loop to generate all submitted times - user's time will be bold -->
+                                        {% for time in puzzle.times.all %}
+                                        <tr class=
+                                            "{% if time.user == request.user %}
+                                            fw-bold{% else %}{% endif %}">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ time.user.username }}</td>
+                                            <td>{{ time.hours }}h {{ time.minutes }}m {{ time.seconds }}s</td>
+                                            <td>{{ time.submitted_at|date:"j M Y" }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+                                <!-- Update and delete buttons -->
+                                {% for time in puzzle.times.all %}
+                                
+                                    {% if time.user == request.user %}
+                                        <div class="d-flex flex-row justify-content-center mt-3 gap-3">
+                                            <a href="{% url 'update_time' time.pk %}" class="btn btn-sm shadow-sm">Update time</a>
+                                            <button type="button" class="btn btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete time</button>
+                                        </div>
+
+                                        <!-- Modal when deleting time submission -->
+                                        <div class="modal fade" id="deleteModal{{ time.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ time.pk }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel{{ time.pk }}">Confirm Deletion</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete your time submission?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                        <form method="post" action="{% url 'delete_time' time.pk %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn">Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endif %}
+                                    {% endif %}
 
-                            {% endfor %}
+                                {% endfor %}
+
+                            {% else %}
+                                <p class="text-muted">No times submitted yet. Be the first!</p>
+                            {% endif %}
+
                         </div>
                     </div>
                 {% endfor %}
+
             </div>
         </div>
     </div>
 
-    <!-- Code for the pagination buttons at the bottom of the post feed -->
+    <!-- Code for the pagination buttons at the bottom of the leaderboards page -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+
             {% if page_obj.has_previous %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -122,6 +144,7 @@
                     <span class="page-link">Next</span>
                 </li>
             {% endif %}
+
         </ul>
     </nav>
 
