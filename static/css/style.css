@@ -123,19 +123,6 @@ footer {
     object-fit: cover;
 }
 
-/* Prevents overflow in tables */
-td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Ensures all columns in tables are the same width */
-.equal-width-table {
-  table-layout: fixed;
-  width: 100%;
-}
-
 /* Media query to ensure header shrinks on very small screens to avoid overspill */
 @media (max-width: 450px) {
   .site-title {
@@ -144,6 +131,13 @@ td {
 
   .smaller-font {
     font-size: 0.75rem;
+  }
+}
+
+/* Media query to ensure no overspill in leaderboards on small screens */
+@media (max-width: 450px) {
+  table {
+    font-size: 0.7rem;
   }
 }
 
