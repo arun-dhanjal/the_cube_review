@@ -7,7 +7,7 @@
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div class="card mb-4 shadow border-0
                     {% if not post.is_approved and post.author == user %}
-                    faded{% elif not post.is_approved %}d-none{% endif %}">
+                    pending-approval-card{% elif not post.is_approved %}d-none{% endif %}">
                     <!-- Card body -->
                     <div class="card-body">
 
@@ -61,7 +61,7 @@
                         <!-- Awaiting approval indicator -->
                         <small class=
                             "{%if not post.is_approved and post.author == user %}
-                            pending-approval{% else %}d-none{% endif %}">
+                            pending-approval-text{% else %}d-none{% endif %}">
                             Pending approval
                         </small>
 
@@ -87,7 +87,7 @@
                 {% for comment in comments %}
                     <div class="card mb-4 shadow border-0
                         {% if not comment.is_approved and comment.author == user %}
-                        faded{% elif not comment.is_approved %}d-none{% endif %}">
+                        pending-approval-card{% elif not comment.is_approved %}d-none{% endif %}">
                         <div class="card-body">
 
                             <!-- Author and buttons -->
@@ -140,7 +140,7 @@
                             <!-- Awaiting approval indicator -->
                             <small class=
                                 "{%if not comment.is_approved and comment.author == user %}
-                                pending-approval{% else %}d-none{% endif %}">
+                                pending-approval-text{% else %}d-none{% endif %}">
                                 Pending approval
                             </small>
 

@@ -59,8 +59,13 @@ footer {
     padding-bottom: 0.25rem;
 }
 
-.faded {
-    color: rgb(172, 175, 175);
+.pending-approval-card {
+    background-color: #fff8df;
+}
+
+.pending-approval-text {
+    color: #5a5caa;
+    font-weight: bold;
 }
 
 .btn {
@@ -105,11 +110,6 @@ footer {
     color: white;
     background-color: #cf4444;
     pointer-events: none; /* prevents hover animation */
-}
-
-.pending-approval {
-    color: #e88686;
-    font-weight: bold;
 }
 
 /* Ensures all images are in consistently sized square boxes */

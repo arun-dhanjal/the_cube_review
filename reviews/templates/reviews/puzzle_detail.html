@@ -107,7 +107,7 @@
                 {% for review in reviews %}
                     <div class="card mb-4 shadow border-0
                         {% if not review.is_approved and review.author == user %}
-                        faded{% elif not review.is_approved %}d-none{% endif %}">
+                        pending-approval-card{% elif not review.is_approved %}d-none{% endif %}">
                         <div class="card-body">
 
                             <!-- Author and buttons -->
@@ -173,7 +173,7 @@
                             <!-- Awaiting approval indicator -->
                             <small class=
                                 "{%if not review.is_approved and review.author == user %}
-                                pending-approval{% else %}d-none{% endif %}">
+                                pending-approval-text{% else %}d-none{% endif %}">
                                 Pending approval
                             </small>
 
