@@ -2,6 +2,16 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
+/* DECIDE IF THIS BACKGROUND GRADIENT IS OK OR TOO MUCH */
+/* body {
+    background: linear-gradient(to right,
+  #ffe2e2 0%,
+  #ffffcd 33%,
+  #d9ffe6 66%,
+  #d5e5fe 100%);
+} */
+
+
 .navbar {
     background: linear-gradient(to right, #cd3535, #ff9999);
     padding-top: 0;
