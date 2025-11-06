@@ -14,7 +14,7 @@ class Leaderboards(generic.ListView):
     """
     Displays a paginated list of :model:`reviews.Puzzle` entries.
 
-    Each puzzle includes its related :model:`leaderboard.TimeSubmission`
+    Each puzzle includes its related :model:`leaderboards.TimeSubmission`
     entries in a table.
 
     **Context**
@@ -40,14 +40,14 @@ class Leaderboards(generic.ListView):
 
 def submit_time(request):
     """
-    Allows authenticated users to submit a :model:`leaderboard.TimeSubmission`.
+    Allows authenticated users to submit a :model:`leaderboards.TimeSubmission`.
 
     Prevents duplicate submissions per puzzle.
 
     **Context**
 
     ``form``
-        An instance of :form:`leaderboard.TimeSubmissionForm`.
+        An instance of :form:`leaderboards.TimeSubmissionForm`.
 
     **Template**
 
@@ -77,14 +77,14 @@ def submit_time(request):
 @login_required
 def update_time(request, pk):
     """
-    Allows users to update their existing :model:`leaderboard.TimeSubmission`.
+    Allows users to update their existing :model:`leaderboards.TimeSubmission`.
 
     **Context**
 
     ``form``
-        An instance of :form:`leaderboard.TimeSubmissionForm`.
+        An instance of :form:`leaderboards.TimeSubmissionForm`.
     ``time_submission``
-        The :model:`leaderboard.TimeSubmission` being updated.
+        The :model:`leaderboards.TimeSubmission` being updated.
 
     **Template**
 
@@ -113,7 +113,7 @@ def update_time(request, pk):
 @login_required
 def delete_time(request, pk):
     """
-    Allow users to delete their :model:`leaderboard.TimeSubmission`.
+    Allow users to delete their :model:`leaderboards.TimeSubmission`.
 
     Redirects to the leaderboard after deletion.
     """

@@ -4,7 +4,7 @@ from .models import TimeSubmission
 
 class TimeSubmissionForm(forms.ModelForm):
     """
-    Form for submitting a :model:`leaderboard.TimeSubmission`.
+    Form for submitting a :model:`leaderboards.TimeSubmission`.
 
     Collects puzzle selection and time components (hours, minutes, seconds).
 
@@ -21,7 +21,7 @@ class TimeSubmissionForm(forms.ModelForm):
     """
     class Meta:
         """
-        Metadata for :form:`leaderboard.TimeSubmissionForm`.
+        Metadata for :form:`leaderboards.TimeSubmissionForm`.
 
         Specifies model, fields, and input widgets.
         """

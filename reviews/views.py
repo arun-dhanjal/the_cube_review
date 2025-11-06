@@ -10,6 +10,18 @@ from .forms import ReviewForm
 
 
 class PuzzleList(generic.ListView):
+    """
+    Displays a paginated list of :model:`reviews.Puzzle` entries.
+
+    **Context**
+
+    ``puzzles``
+        A queryset of all puzzles.
+
+    **Template**
+
+    :template:`reviews/puzzle_list.html`
+    """
     model = Puzzle
     template_name = "reviews/puzzle_list.html"
     context_object_name = "puzzles"
@@ -17,6 +29,22 @@ class PuzzleList(generic.ListView):
 
 
 def puzzle_detail(request, pk):
+    """
+    Displays puzzle details and handles review submission.
+
+    **Context**
+
+    ``puzzle``
+        The selected :model:`reviews.Puzzle`.
+    ``reviews``
+        All reviews for the puzzle.
+    ``form``
+        An instance of :form:`reviews.ReviewForm`.
+
+    **Template**
+
+    :template:`reviews/puzzle_detail.html`
+    """
     puzzle = get_object_or_404(Puzzle, pk=pk)
     reviews = puzzle.reviews.all()
     form = ReviewForm
@@ -28,7 +56,11 @@ def puzzle_detail(request, pk):
             review.author = request.user
             review.puzzle = puzzle
             review.save()
-            messages.success(request, "Review added - now pending approval. Reviews will only show to other users once approved.")
+            messages.success(
+                request,
+                "Review added - now pending approval. "
+                "Reviews will only show to other users once approved."
+            )
             return redirect("puzzle_detail", pk=puzzle.pk)
 
     return render(request, "reviews/puzzle_detail.html", {
@@ -40,6 +72,22 @@ def puzzle_detail(request, pk):
 
 @login_required
 def edit_review(request, pk):
+    """
+    Allows users to edit their own :model:`reviews.Review`.
+
+    Resets approval status after editing.
+
+    **Context**
+
+    ``form``
+        An instance of :form:`reviews.ReviewForm`.
+    ``review``
+        The review being edited.
+
+    **Template**
+
+    :template:`reviews/edit_review.html`
+    """
     review = get_object_or_404(Review, pk=pk)
     if review.author != request.user:
         return HttpResponseForbidden("You can't edit this review.")
@@ -50,7 +98,11 @@ def edit_review(request, pk):
             review = form.save(commit=False)
             review.is_approved = False
             review.save()
-            messages.success(request, "Review edited successfully - status changed to 'Pending approval'.")
+            messages.success(
+                request,
+                "Review edited successfully - status "
+                "changed to 'Pending approval'."
+            )
             return redirect("puzzle_detail", pk=review.puzzle.pk)
 
     else:
@@ -64,6 +116,11 @@ def edit_review(request, pk):
 
 @login_required
 def delete_review(request, pk):
+    """
+    Allows users to delete their own :model:`reviews.Review`.
+
+    Redirects to the puzzle detail page after deletion.
+    """
     review = get_object_or_404(Review, pk=pk)
     if review.author != request.user:
         return HttpResponseForbidden("You can't delete this review.")

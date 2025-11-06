@@ -7,7 +7,7 @@ from .models import TimeSubmission
 @admin.register(TimeSubmission)
 class TimeSubmissionAdmin(admin.ModelAdmin):
     """
-    Admin configuration for :model:`leaderboard.TimeSubmission`.
+    Admin configuration for :model:`leaderboards.TimeSubmission`.
 
     Displays submission string, puzzle, and user.
     """
