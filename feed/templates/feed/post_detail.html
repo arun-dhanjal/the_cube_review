@@ -2,52 +2,59 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <!-- Bootstrap container dynamically adjusts page content width according to screen size -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+
+                <!-- Individual post -->
                 <div class="card mb-4 shadow border-0
                     {% if not post.is_approved and post.author == user %}
                     pending-approval-card{% elif not post.is_approved %}d-none{% endif %}">
+
                     <!-- Card body -->
                     <div class="card-body">
 
                         <!-- Author and buttons -->
                         <div class="card-title d-flex justify-content-between">
+
+                            <!-- Author -->
                             <div>
                                 <span class="fw-bold fs-3">{{post.author }}</span>
                             </div>
-                            <div>
-                                <!-- Edit and delete buttons -->
-                                {% if post.author == request.user %}
-                                    <div>
-                                        <a href="{% url 'edit_post' post.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-4" aria-label="Edit"></i></a>
-                                        <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}"><i class="bi bi-trash fs-4" aria-label="Delete"></i></a>
-                                    </div>
 
-                                    <!-- Modal when deleting post -->
-                                    <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete your post? This can't be undone.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                                    <form method="post" action="{% url 'delete_post' post.pk %}">
-                                                        {% csrf_token %}
-                                                        <button type="submit" class="btn">Delete</button>
-                                                    </form>
-                                                </div>
+                            <!-- Edit and delete buttons -->
+                            <div>
+                                {% if post.author == request.user %}
+                                <div>
+                                    <a href="{% url 'edit_post' post.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-4" aria-label="Edit"></i></a>
+                                    <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}"><i class="bi bi-trash fs-4" aria-label="Delete"></i></a>
+                                </div>
+
+                                <!-- Modal when deleting post -->
+                                <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete your post? This can't be undone.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                <form method="post" action="{% url 'delete_post' post.pk %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn">Delete</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-
+                                </div>
                                 {% endif %}
                             </div>
+
                         </div>
 
                         <!-- Date posted -->
@@ -67,7 +74,7 @@
 
                         <hr>
 
-                        <!-- Main body -->
+                        <!-- Post text -->
                         <p class="card-text">{{ post.body|linebreaks }}</p>
 
                         <!-- Optional image -->
@@ -82,51 +89,58 @@
 
                 <hr>
 
-                <!-- List of comments -->
+                <!-- Comment section -->
                 <h3 class="mb-3 fw-bold">Comments</h3>
+
+                <!-- List of comments -->
                 {% for comment in comments %}
                     <div class="card mb-4 shadow border-0
                         {% if not comment.is_approved and comment.author == user %}
                         pending-approval-card{% elif not comment.is_approved %}d-none{% endif %}">
+
+                        <!-- Card body -->
                         <div class="card-body">
 
                             <!-- Author and buttons -->
                             <div class="card-title d-flex justify-content-between">
+
+                                <!-- Author -->
                                 <div>
                                     <span class="fw-bold fs-4">{{ comment.author }}</span>
                                 </div>
-                                <div>
-                                    <!-- Edit and delete buttons -->
-                                    {% if comment.author == request.user %}
-                                        <div>
-                                            <a href="{% url 'edit_comment' comment.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-5" aria-label="Edit"></i></a>
-                                            <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.pk }}"><i class="bi bi-trash fs-5" aria-label="Delete"></i></a>
-                                        </div>
 
-                                        <!-- Modal when deleting comment -->
-                                        <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ comment.pk }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel{{ comment.pk }}">Confirm Deletion</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete your comment? This can't be undone.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                                        <form method="post" action="{% url 'delete_comment' comment.pk %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn">Delete</button>
-                                                        </form>
-                                                    </div>
+                                <!-- Edit and delete buttons -->
+                                <div>
+                                    {% if comment.author == request.user %}
+                                    <div>
+                                        <a href="{% url 'edit_comment' comment.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-5" aria-label="Edit"></i></a>
+                                        <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.pk }}"><i class="bi bi-trash fs-5" aria-label="Delete"></i></a>
+                                    </div>
+
+                                    <!-- Modal when deleting comment -->
+                                    <div class="modal fade" id="deleteModal{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ comment.pk }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ comment.pk }}">Confirm Deletion</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete your comment? This can't be undone.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="post" action="{% url 'delete_comment' comment.pk %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn">Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                     {% endif %}
                                 </div>
+
                             </div>
 
                             <!-- Date posted -->
@@ -146,26 +160,27 @@
 
                             <hr>
 
-                            <!-- Body -->
+                            <!-- Comment text -->
                             <p class="card-text mb-3">{{ comment.body|linebreaks }}</p>
                         
                         </div>
                     </div>
                 {% empty %}
-                    <p>No comments yet.</p>
+                    <p>No comments yet. Be the first to share your thoughts!</p>
                 {% endfor %}
 
-                <!-- Add comment section -->
+                <!-- Add comment form -->
                 {% if user.is_authenticated %}
                     <h3 class="fw-bold">Add a comment:</h3>
                     <form method="post">
-                        {{ form | crispy }}
                         {% csrf_token %}
-                        <button type="submit" class="btn mb-3">Submit</button>
+                        {{ form | crispy }}
+                        <button type="submit" class="btn mb-3" aria-label="Submit your comment">Submit</button>
                     </form>
                 {% else %}
-                    <h3 class="fw-bold text-center mb-3">Log in to leave a comment!</h3>
+                    <h3 class="fw-bold text-center mb-4">Log in to leave a comment!</h3>
                 {% endif %}
+
             </div>
         </div>
     </div>

@@ -1,63 +1,71 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Code for the main post feed -->
+    <!-- Bootstrap container dynamically adjusts page content width according to screen size -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-                <div class="text-center">
+
+                <!-- Welcome message - changes depending on login status -->
+                <div class="text-center mb-3">
                     {% if user.is_authenticated %}
                     <h2 class="mb-3 fw-bold">Hi {{ user }}, what's new with you?</h2>
-                    <a class="btn me-2 shadow-sm mb-3" href="{% url 'create_post' %}">New Post</a>
+                    <a class="btn shadow-sm mb-3" href="{% url 'create_post' %}">New Post</a>
                     {% else %}
                     <h2 class="mb-3 fw-bold">Want to join the conversation? Sign up now!</h2>
                     <a class="btn shadow-sm mb-3" href="{% url 'account_signup' %}">Sign Up</a>
                     {% endif %}
                 </div>
+
+                <!-- Post feed -->
                 {% for post in posts %}
                     <div class="card mb-4 shadow border-0
                         {% if not post.is_approved and post.author == user %}
                         pending-approval-card{% elif not post.is_approved %}d-none{% endif %}">
+
                         <!-- Card body -->
                         <div class="card-body">
 
                             <!-- Author and buttons -->
                             <div class="card-title d-flex justify-content-between">
+                                
+                                <!-- Author -->
                                 <div>
                                     <span class="fw-bold fs-3">{{post.author }}</span>
                                 </div>
+                                
+                                <!-- Edit and delete buttons -->
                                 <div>
-                                    <!-- Edit and delete buttons -->
                                     {% if post.author == request.user %}
-                                        <div>
-                                            <a href="{% url 'edit_post' post.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-4" aria-label="Edit"></i></a>
-                                            <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}" aria-label="Delete"><i class="bi bi-trash fs-4"></i></a>
-                                        </div>
+                                    <div>
+                                        <a href="{% url 'edit_post' post.pk %}" class="edit-button btn-sm p-0 me-3"><i class="bi bi-pencil-square fs-4" aria-label="Edit"></i></a>
+                                        <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ post.pk }}" aria-label="Delete"><i class="bi bi-trash fs-4"></i></a>
+                                    </div>
 
-                                        <!-- Modal when deleting post -->
-                                        <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete your post? This can't be undone.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                                        <form method="post" action="{% url 'delete_post' post.pk %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn">Delete</button>
-                                                        </form>
-                                                    </div>
+                                    <!-- Modal when deleting post -->
+                                    <div class="modal fade" id="deleteModal{{ post.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ post.pk }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ post.pk }}">Confirm Deletion</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete your post? This can't be undone.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="post" action="{% url 'delete_post' post.pk %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn">Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                     {% endif %}
                                 </div>
+
                             </div>
 
                             <!-- Date posted -->
@@ -77,7 +85,7 @@
 
                             <hr>
 
-                            <!-- Main body -->
+                            <!-- Post text -->
                             <p class="card-text">{{ post.body|linebreaks }}</p>
 
                             <!-- Optional image -->
@@ -88,12 +96,14 @@
                             {% endif %}
 
                             <!-- Full width View Post button -->
-                            <a href="{% url 'post_detail' post.pk %}" class="btn w-100 shadow rounded">View Post</a>
+                            <a href="{% url 'post_detail' post.pk %}" class="btn w-100 shadow rounded" aria-label="View post">View Post</a>
+
                         </div>
                     </div>
                 {% empty %}
-                <p>No posts yet.</p>
+                <p>No posts yet. Be the first to share something!</p>
                 {% endfor %}
+
             </div>
         </div>
     </div>
@@ -101,6 +111,7 @@
     <!-- Code for the pagination buttons at the bottom of the post feed -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+
             {% if page_obj.has_previous %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -124,6 +135,7 @@
                     <span class="page-link">Next</span>
                 </li>
             {% endif %}
+
         </ul>
     </nav>
 

@@ -5,11 +5,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-                <h2>Edit your post:</h2>
+                <h2 class= "mb-3 fw-bold">Edit your post:</h2>
+                <!-- Crispy Forms package used to create form fields -->
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
 
+                    <!-- Display current image if one exists -->
                     {% if post.image %}
                         <div class="mb-3">
                             <label class="form-label">Current Image:</label><br>
@@ -17,7 +19,7 @@
                         </div>
                     {% endif %}
 
-                    <button type="submit" class="btn mb-3">Save</button>
+                    <button type="submit" class="btn mb-3" aria-label="Confirm edit">Save</button>
                 </form>
             </div>
         </div>
