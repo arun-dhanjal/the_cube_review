@@ -6,21 +6,35 @@ from .models import Post, Comment
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Post model.
+
+    Displays post metadata and approval status.
+    Includes a custom action to bulk-approve selected posts.
+    """
     list_display = ("__str__", "author", "created_at", "is_approved")
     list_filter = ("author", "is_approved",)
     actions = ["approve_posts"]
 
     def approve_posts(self, request, queryset):
+        """Bulk-approve selected posts."""
         queryset.update(is_approved=True)
     approve_posts.short_description = "Approve selected posts"
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Comment model.
+
+    Displays comment metadata and approval status.
+    Includes a custom action to bulk-approve selected comments.
+    """
     list_display = ("__str__", "author", "created_at", "is_approved")
     list_filter = ("author", "is_approved",)
     actions = ["approve_comments"]
 
     def approve_comments(self, request, queryset):
+        """Bulk-approve selected comments."""
         queryset.update(is_approved=True)
-    approve_comments.short_description = "Approved selected comments"
+    approve_comments.short_description = "Approve selected comments"

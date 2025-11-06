@@ -3,7 +3,15 @@ from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
-    remove_image = forms.BooleanField(required=False, label="Remove current image")
+    """
+    Form for creating or editing a post.
+
+    Includes an optional checkbox to remove the current image.
+    """
+    remove_image = forms.BooleanField(
+        required=False,
+        label="Remove current image"
+    )
 
     class Meta:
         model = Post
@@ -14,6 +22,9 @@ class PostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """
+    Form for creating or editing a comment on a post.
+    """
     class Meta:
         model = Comment
         fields = ["body"]
