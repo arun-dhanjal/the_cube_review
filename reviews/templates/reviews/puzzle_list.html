@@ -1,19 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Code for the puzzle list -->
+    <!-- Bootstrap container dynamically adjusts page content width according to screen size -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+
+                <!-- Page title -->
                 <div class="text-center">
                     <h2 class="mb-3 fw-bold">Puzzle Reviews</h2>
                 </div>
+
+                <!-- List of puzzles -->
                 {% for puzzle in puzzles %}
                     <div class="card mb-4 shadow border-0">
+
                         <!-- Card body -->
                         <div class="card-body">
                             
+                            <!-- Card header -->
                             <div class="text-center">
+
                                 <!-- Puzzle name -->
                                 <div>
                                     <span class="fw-bold fs-3">{{ puzzle.name }}</span>
@@ -87,6 +94,7 @@
                                 {% else %}
                                 <small class="text-muted">No reviews yet</small>
                                 {% endif %}
+
                             </div>
 
                             <hr>
@@ -98,16 +106,17 @@
                                 </div>
                             {% endif %}
 
-                            <!-- Description -->
+                            <!-- Puzzle description -->
                             <p class="card-text mb-3">{{ puzzle.description }}</p>
 
                             <!-- Full width See Reviews button -->
-                            <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded">See Reviews</a>
+                            <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded" aria-label="See reviews for {{ puzzle.name }}">See Reviews</a>
+
                         </div>
+
                     </div>
-                {% empty %}
-                <p>No puzzle reviews yet.</p>
                 {% endfor %}
+
             </div>
         </div>
     </div>
@@ -115,6 +124,7 @@
     <!-- Code for the pagination buttons at the bottom of the puzzle list -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+
             {% if page_obj.has_previous %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -138,6 +148,7 @@
                     <span class="page-link">Next</span>
                 </li>
             {% endif %}
+            
         </ul>
     </nav>
 

@@ -2,14 +2,20 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <!-- Bootstrap container dynamically adjusts page content width according to screen size -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+
+                    <!-- Individual puzzle -->
                     <div class="card mb-4 shadow border-0">
+
                         <!-- Card body -->
                         <div class="card-body">
 
+                            <!-- Card header -->
                             <div class="text-center">
+
                                 <!-- Puzzle name -->
                                 <div>
                                     <span class="fw-bold fs-3">{{ puzzle.name }}</span>
@@ -83,6 +89,7 @@
                                 {% else %}
                                 <small class="text-muted">No reviews yet</small>
                                 {% endif %}
+
                             </div>
 
                             <hr>
@@ -94,59 +101,67 @@
                                 </div>
                             {% endif %}
 
-                            <!-- Description -->
+                            <!-- Puzzle description -->
                             <p class="card-text mb-3">{{ puzzle.description }}</p>
 
                         </div>
+
                     </div>
 
                 <hr>
 
+                <!-- Reviews section -->
+                <h3 class="mb-3 fw-bold">Reviews</h3>
+
                 <!-- List of reviews -->
-                <h3 class="mb-4">Reviews</h3>
                 {% for review in reviews %}
                     <div class="card mb-4 shadow border-0
                         {% if not review.is_approved and review.author == user %}
                         pending-approval-card{% elif not review.is_approved %}d-none{% endif %}">
+
+                        <!-- Card body -->
                         <div class="card-body">
 
                             <!-- Author and buttons -->
                             <div class="card-title d-flex justify-content-between mb-0">
+
+                                <!-- Author -->
                                 <div>
                                     <span class="fw-bold fs-4">{{ review.author }}</span>
                                 </div>
-                                <div>
-                                    <!-- Edit and delete buttons -->
-                                    {% if review.author == request.user %}
-                                        <div>
-                                            <a href="{% url 'edit_review' review.pk %}" class="edit-button btn-sm p-0 me-3" aria-label="Edit"><i class="bi bi-pencil-square fs-5"></i></a>
-                                            <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ review.pk }}" aria-label="Delete"><i class="bi bi-trash fs-5"></i></a>
-                                        </div>
 
-                                        <!-- Modal when deleting review -->
-                                        <div class="modal fade" id="deleteModal{{ review.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ review.pk }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel{{ review.pk }}">Confirm Deletion</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete your review? This can't be undone.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
-                                                        <form method="post" action="{% url 'delete_review' review.pk %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn">Delete</button>
-                                                        </form>
-                                                    </div>
+                                <!-- Edit and delete buttons -->
+                                <div>
+                                    {% if review.author == request.user %}
+                                    <div>
+                                        <a href="{% url 'edit_review' review.pk %}" class="edit-button btn-sm p-0 me-3" aria-label="Edit"><i class="bi bi-pencil-square fs-5"></i></a>
+                                        <a href="#" class="delete-button btn-sm p-0" data-bs-toggle="modal" data-bs-target="#deleteModal{{ review.pk }}" aria-label="Delete"><i class="bi bi-trash fs-5"></i></a>
+                                    </div>
+
+                                    <!-- Modal when deleting review -->
+                                    <div class="modal fade" id="deleteModal{{ review.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ review.pk }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ review.pk }}">Confirm Deletion</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete your review? This can't be undone.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="post" action="{% url 'delete_review' review.pk %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn">Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                     {% endif %}
                                 </div>
+
                             </div>
 
                             <!-- Rating -->
@@ -179,16 +194,16 @@
 
                             <hr>
 
-                            <!-- Body -->
+                            <!-- Review text -->
                             <p class="card-text mb-3">{{ review.body|linebreaks }}</p>
                         
                         </div>
                     </div>
                 {% empty %}
-                    <p>No reviews yet.</p>
+                    <p>No reviews yet. Be the first to share your thoughts!</p>
                 {% endfor %}
 
-                <!-- Add review section -->
+                <!-- Add review form -->
                 {% if user.is_authenticated %}
                     <h3>Add a review:</h3>
                     <form method="post">
@@ -197,8 +212,9 @@
                         <button type="submit" class="btn mb-3">Submit</button>
                     </form>
                 {% else %}
-                    <h3>Log in to leave a review!</h3>
+                    <h3 class="fw-bold text-center mb-4">Log in to leave a review!</h3>
                 {% endif %}
+
             </div>
         </div>
     </div>
