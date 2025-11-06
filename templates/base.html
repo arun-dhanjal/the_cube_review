@@ -43,15 +43,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 d-flex justify-content-evenly gap-4">
-                <a href="{% url 'feed' %}" class="nav-icon {% if request.resolver_match.url_name == 'feed' %}active{% endif %}">
+                <a href="{% url 'feed' %}" class="nav-icon {% if request.resolver_match.url_name == 'feed' %}active{% endif %}" aria-label="Home">
                     <i class="bi bi-house-door-fill fs-1"></i>
                 </a>
-                <a href="{% url 'puzzle_list' %}" class="nav-icon {% if request.resolver_match.url_name == 'puzzle_list' %}active{% endif %}">
+                <a href="{% url 'puzzle_list' %}" class="nav-icon {% if request.resolver_match.url_name == 'puzzle_list' %}active{% endif %}" aria-label="Reviews">
                     <i class="bi bi-star-fill fs-1"></i>
                     <i class="bi bi-star-half fs-1"></i>
                     <i class="bi bi-star fs-1"></i>
                 </a>
-                <a href="{% url 'leaderboards' %}" class="nav-icon {% if request.resolver_match.url_name == 'leaderboards' %}active{% endif %}">
+                <a href="{% url 'leaderboards' %}" class="nav-icon {% if request.resolver_match.url_name == 'leaderboards' %}active{% endif %}" aria-label="Leaderboards">
                     <i class="bi bi-trophy-fill fs-1"></i>
                 </a>
             </div>
