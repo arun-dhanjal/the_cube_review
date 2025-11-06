@@ -1,153 +1,188 @@
-body {
-    background-color: rgb(245, 245, 245);
+/* === CSS Variables === */
+:root {
+    --button-red: #cf4444;
+    --hover-red: #e88686;
+    --deep-red: #cd3535;
+    --light-red: #ff9999;
+    --button-text: white;
+    --icon-grey: #aeaeae;
+    --pending-bg: #fff8df;
+    --pending-text: #5a5caa;
+    --page-bg: #f5f5f5;
+    --nav-default: black;
 }
 
-/* DECIDE IF THIS BACKGROUND GRADIENT IS OK OR TOO MUCH */
-/* body {
-    background: linear-gradient(to right,
-  #ffe2e2 0%,
-  #ffffcd 33%,
-  #d9ffe6 66%,
-  #d5e5fe 100%);
-} */
 
+/* === Header styling === */
 
+/* Header background and lower shadow */
 .navbar {
-    background: linear-gradient(to right, #cd3535, #ff9999);
+    background: linear-gradient(to right, var(--deep-red), var(--light-red));
     padding-top: 0;
     padding-bottom: 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
 }
 
+/* Light around header buttons to show on red background  */
 .light-shadow {
-  box-shadow: 0 0 10px #e88686;
+  box-shadow: 0 0 10px var(--hover-red);
 }
 
+/* Custom padding and margins to override Bootstrap defaults */
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
     margin: 0;
 }
 
+/* Site logo and title kept at consistent height */
 .site-title {
     height: 40px;
     width: auto;
 }
-.navbar-brand i {
-    font-size: 40px;
-}
 
+
+/* === Navigation icons styling === */
+
+/* Background for navigation icons matches main page body background */
 .icon-navigation {
-    background-color: rgb(245, 245, 245);
+    background-color: var(--page-bg);
 }
 
+/* Nav icons transition from red to black and stay red when active */
 .nav-icon {
-  color: #000000;
+  color: var(--nav-default);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .nav-icon:hover {
-  color: #cf4444;
+  color: var(--button-red);
   
 }
 
 .nav-icon.active {
-  color: #cf4444; /* Bootstrap blue */
-  border-bottom: 2px solid #cf4444;
+  color: var(--button-red);
+  border-bottom: 2px solid var(--button-red);
 }
 
-footer {
-    background: linear-gradient(to right, #cd3535, #ff9999);
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+
+/* === Main body styling === */
+
+/* Background of main content set to slightly off-white */
+body {
+    background-color: var(--page-bg);
 }
 
-.pending-approval-card {
-    background-color: #fff8df;
-}
 
-.pending-approval-text {
-    color: #5a5caa;
-    font-weight: bold;
-}
+/* === Button styling === */
 
+/* Majority of buttons are red with var(--button-text) text and change to lighter red when hovered over */
 .btn {
-    color: white;
-    background-color: #cf4444;
+    color: var(--button-text);
+    background-color: var(--button-red);
 }
 
 .btn:hover {
-    color: white;
-    background-color: #e88686;
+    color: var(--button-text);
+    background-color: var(--hover-red);
 }
 
+/* Special case with edit and delete buttons that are icons - they transition from light grey to red */
 .edit-button {
-    color: #aeaeae;
+    color: var(--icon-grey);
     transition: color 0.2s ease;
 }
 
 .edit-button:hover {
-    color: #cf4444;
+    color: var(--button-red);
 }
 
 .delete-button {
-    color: #aeaeae;
+    color: var(--icon-grey);
     transition: color 0.2s ease;
 }
 
 .delete-button:hover {
-    color: #cf4444;
+    color: var(--button-red);
 }
 
+/* Page buttons styled similar to other main buttons */
 .page-link {
-    color: white;
-    background-color: #cf4444;
+    color: var(--button-text);
+    background-color: var(--button-red);
 }
 
 .page-link:hover {
-    color: white;
-    background-color: #e88686;
+    color: var(--button-text);
+    background-color: var(--hover-red);
 }
 
 .page-indicator {
-    color: white;
-    background-color: #cf4444;
+    color: var(--button-text);
+    background-color: var(--button-red);
     pointer-events: none; /* prevents hover animation */
 }
 
-/* Ensures all images are in consistently sized square boxes */
+
+/* === Image styling === */
+
+/* Image container ensures all images are in consistently sized square boxes */
 .image-box {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
 }
 
+/* Image itself is slightly smaller than container to allow shadow to show */
 .image-box img {
     width: 90%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
+
+/* === Pending approval styling === */
+
+/* Light yellowish card with blue text to ensure accessibility */
+.pending-approval-card {
+    background-color: var(--pending-bg);
+}
+
+.pending-approval-text {
+    color: var(--pending-text);
+    font-weight: bold;
+}
+
+
+/* === Footer styling === */
+
+footer {
+    background: linear-gradient(to right, var(--deep-red), var(--light-red));
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+
+/* === Media queries === */
+
 /* Media query to ensure header shrinks on very small screens to avoid overspill */
 @media (max-width: 450px) {
-  .site-title {
-    height: 28px;
-  }
+    
+    /* Handles site logo and title */
+    .site-title {
+        height: 28px;
+    }
 
-  .smaller-font {
-    font-size: 0.75rem;
-  }
+    /* Handles the login status text */
+    .smaller-font {
+        font-size: 0.75rem;
+    }
 }
 
 /* Media query to ensure no overspill in leaderboards on small screens */
 @media (max-width: 450px) {
-  table {
-    font-size: 0.7rem;
-  }
-}
-
-/* DELETE THIS BEFORE SUBMISSION!!! */
-.red-border {
-    border: 2px solid red;
+    table {
+        font-size: 0.7rem;
+    }
 }
