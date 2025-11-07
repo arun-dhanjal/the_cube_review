@@ -1,10 +1,12 @@
-# < app name >
+# The Cube Review
 
-< Short description about what the app is and what it is for. >
+The Cube Review is a mini social platform built for twisty puzzle enthusiasts. It provides numerous ways for this community of hobbyists to interact, including a post feed to share thoughts, a reviews section to rate puzzles, and a leaderboards section to compete against peers.
 
-![<application name> app shown on a range of devices](/readme-docs/devices-showcase.png)
+<span style="color: red;">**STILL NEED TO UPDATE AMIRESPONSIVE!!!**</span>
 
-[View < application name > on Github Pages](https://arun-dhanjal.github.io/<application-name>/)
+![The Cube Review shown on a range of devices](/readme-docs/devices-showcase.png)
+
+[View The Cube Review on Heroku](https://the-cube-review-b38a16dd5f1d.herokuapp.com/)
 
 ## CONTENTS
 
