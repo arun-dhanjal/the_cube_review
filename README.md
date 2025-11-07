@@ -39,13 +39,125 @@
 
 ### Application Purpose
  
-< A short paragraph on the purpose of this application. >
+This application is designed to give a specific group of users (twisty puzzle enthusiasts) a platform on which they can interact as a community in a number of ways. The main use cases would be: a feed section for viewing, submitting, and commenting on posts; a reviews section to read and submit reviews on a number of puzzles; and a leaderboards section to see solve-time rankings and even add your own. The application would be used in a similar way to other social media apps, albeit on a smaller scale and in a much more specific way.
 
 ### User Value
 
-User stories with relevant acceptance criteria have been created to demonstrate the value that users would derive from using this app. Associated tasks have been established in order to drive development throughout the project. Details on each user story, along with the acceptance criteria and required tasks can be found on a dedicated GitHub project board at the link below:
+User stories with relevant acceptance criteria have been created to demonstrate the value that users would derive from using this app. These user stories are listed below:
 
-[GitHub Project Board](https://github.com/users/arun-dhanjal/projects/<project-number>)
+### #1 Paginated Post Feed
+
+As a user, I want to see a feed of posts so I can browse recent updates from others.
+
+**Acceptance Criteria**
+
+- Posts are displayed in reverse chronological order.
+- Only a limited number of posts are shown per page.
+- Pagination controls allow navigation between pages.
+
+### #2 Registration and Login
+
+As a new user, I want to register and log in so I can access and contribute to the platform.
+
+**Acceptance Criteria**
+
+- Registration form includes username and password.
+- Login form accepts valid credentials.
+- Users can logout.
+
+### #3 Create Posts
+
+As a logged-in user, I want to create a post so I can share updates with the community.
+
+**Acceptance Criteria**
+
+- Post form includes body and optional image.
+- Posts are saved with author and timestamp.
+- Only logged-in users can create posts.
+
+### #4 View Individual Posts
+
+As a user, I want to view a single post in detail so I can read and comment on it.
+
+**Acceptance Criteria**
+
+- Clicking a post opens a detail page.
+- Detail page shows full post content and comments.
+
+### #5 Comment on Posts
+
+As a logged-in user, I want to comment on posts so I can join the conversation.
+
+**Acceptance Criteria**
+
+- Comment form appears on post detail page only for logged-in users.
+- Comments are saved with author and timestamp.
+- Comments display under the correct post.
+
+### #6 Users Can Manage Their Own Content
+
+As a logged-in user, I want to edit or delete my own posts and comments so I can control my contributions.
+
+**Acceptance Criteria**
+
+- Edit and delete options appear only for the content owner.
+- Edits update the content and timestamp.
+- Deletions remove the content from the database.
+
+### #7 Admin Approves All Submitted Content
+
+As the admin, I want to approve all posts, comments, and reviews before they appear publicly.
+
+**Acceptance Criteria**
+
+- New content is marked as pending by default.
+- Admin can approve content via the Django admin panel.
+- Only approved content is visible to users.
+
+### #8 Puzzle List Page
+
+As a user, I want to browse puzzles so I can learn about different twisty puzzles and see how the community has rated them.
+
+**Acceptance Criteria**
+
+- Review page lists all puzzles.
+- Each listing shows puzzle name, average rating, number of reviews, picture, and description.
+
+### #9 Post Puzzle Reviews and Submit a Rating
+
+As a logged-in user, I want to submit a review and rating for a puzzle so I can share my opinion.
+
+**Acceptance Criteria**
+
+- Review form includes puzzle name, rating (1–5), and review text.
+- Reviews are saved with author and timestamp.
+- Reviews are hidden until approved by admin.
+
+### #10 Leaderboard Page
+
+As a user, I want to view a leaderboard so I can compare solve times with others.
+
+**Acceptance Criteria**
+
+- Leaderboard shows submitted times per puzzle, with the fastest at the top.
+- Displays puzzle name, rank, usernam, time, and submission date.
+
+### #11 Submit Solve Times
+
+**User Story**
+
+As a logged-in user, I want to submit my solve time so I can compete on the leaderboard.
+
+**Acceptance Criteria**
+
+- Submission form includes puzzle name and time.
+- Times are saved with user, time, and timestamp.
+
+- - -
+
+In addition, a dedicated GitHub project board has been created and used to drive development and manage project tasks. This project board is linked below:
+
+[GitHub Project Board](https://github.com/users/arun-dhanjal/projects/7)
 
 - - -
 
