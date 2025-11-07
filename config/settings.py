@@ -145,3 +145,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary configuration (to force HTTPS)
+CLOUDINARY = {
+    "CLOUDINARY_URL": os.environ.get("CLOUDINARY_URL"),
+    "secure": True,  # Force HTTPS for all Cloudinary URLs
+}
