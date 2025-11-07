@@ -2,7 +2,7 @@
 
 The Cube Review is a mini social platform built for twisty puzzle enthusiasts. It provides numerous ways for this community of hobbyists to interact, including a post feed to share thoughts, a reviews section to rate puzzles, and a leaderboards section to compete against peers.
 
-<span style="color: red;">**STILL NEED TO UPDATE AMIRESPONSIVE!!!**</span>
+**!!! STILL NEED TO UPDATE AMIRESPONSIVE !!!**
 
 ![The Cube Review shown on a range of devices](/readme-docs/devices-showcase.png)
 
@@ -167,9 +167,13 @@ In addition, a dedicated GitHub project board has been created and used to drive
 
 ### Colour Scheme
 
-![< app name > Colour Palette](/readme-docs/appname-palette.png)
+![The Cube Review Colour Palette](/readme-docs/the-cube-review-palette.png)
 
-< Description of colour palette and reasons for choices. > The colour palette was created using the [Coolors](https://coolors.co/) website.
+A palette of mainly differing shades of red was chosen for the theme of this application. The intention was to keep things looking relatively minimalistic with splashes of a key colour throughout. The majority of buttons use these shades of red with white text. Edit and delete icons are grey whilst inactive, turning red on hover, fitting the minimalistic style. Navigation icons are bold in black, but also turn red on hover or when active.
+
+One key exception to the overarching colour scheme applies to content that is pending approval. Posts, comments, and reviews that are yet to be approved will be highlighted in a pale, muted yellow with 'Pending approval' text written in a shade of blue. This combination has been chosen to make it clear when content is pending approval whilst remaining easy on the eye, and most importantly retaining stark contrast for accessibility.
+
+The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 ### Typography
 
@@ -188,16 +192,9 @@ Wireframes were created based on the initial page layout designs for various scr
 
 ### Database Structure
 
-The back-end database was designed at the start of the project with the intention of remaining unchanged througout the development in order to avoid later complications. The relevant Entity Relationship Diagrams (ERDs) can be viewed below:
+The back-end databases were designed at the start of the project with the intention of remaining unchanged througout the development in order to avoid later complications. The Entity Relationship Diagram (ERD) can be viewed below:
 
-#### < ERD 1 >
-![< ERD 1 >](/readme-docs/erd-1.png)
-
-#### < ERD 2 >
-![< ERD 2 >](/readme-docs/erd-2.png)
-
-#### < ERD 3 >
-![< ERD 3 >](/readme-docs/erd-3.png)
+![< ERD 1 >](/readme-docs/erd.png)
 
 ### Features
 
@@ -261,29 +258,33 @@ Mindful development has been exercised throughout the project to ensure the app 
 
 ### Languages Used
 
-< delete as appropriate: HTML, CSS, JavaScript, and Python > were used to create this app.
+Python (Django) - For backend logic, models, views, and routing.
+
+HTML & CSS - For structure and styling.
+
+Django Template Language (DTL) - For dynamic rendering and template logic.
 
 ### Frameworks, Libraries & Programs Used
-
-< delete the following entries as appropriate >
 
 Git - For version control.
 
 GitHub - To save and store the files for the app, as well as for project management.
 
-Django version < version number > - Used as the full stack framework to connect the front and back end using MVT (model-view-template) methodology.
+Django version 4.2 - Used as the full stack framework to connect the front and back end using MVT (model-view-template) methodology.
 
 PostgreSQL - The chosen RDBMS for this project.
 
-Bootstrap version < version number > - < Code used mainly for < describe features that used BS >. Additional CSS styling was also implemented in style.css. >
+Bootstrap version 5.3 - To utilise a number of Bootstrap components, including cards, buttons, and classes for styling. Additional CSS styling was also implemented in style.css.
+
+Django crispy forms - Used for responsive form rendering with Bootstrap 5.
 
 Browser Dev Tools - To troubleshoot and test features, solve issues with responsiveness, and styling.
 
-Microsoft PowerPoint - To create the initial wireframes.
+Microsoft PowerPoint - To manually create the initial wireframes, site logo, site title, and ERD diagram.
 
-Microsoft Excel - To create the databas structure ERDs.
+Microsoft Excel - To create the database structure ERD tables, and to track and manage code checking and testing exercises.
 
-Microsoft Copilot - For code queries and resolution of coding issues.
+Microsoft Copilot - For code queries, troubleshooting Django views and templates, refining logic, and converting Excel tables into Markdown format.
 
 OpenAI ChatGPT - For code queries and resolution of coding issues.
 
@@ -293,26 +294,11 @@ OpenAI ChatGPT - For code queries and resolution of coding issues.
 
 [Am I Responsive?](http://ami.responsivedesign.is/) - To show the app image on a range of devices.
 
-< additional frameworks, libraries, or packages >
-
 - - -
 
 ## Deployment
 
-< If deployed via GitHub, use the following steps and delete the Heroku steps.>
-
-GitHub Pages was used to deploy the live app. The instructions to achieve this are below:
-
-1. Log in to GitHub.
-2. Find the repository for this project: hackathon-quiz-app.
-3. Click on the Settings link.
-4. Click on the Pages link in the left hand side navigation bar.
-5. In the Source section, choose main from the drop down select branch menu. Select Root from the drop down select folder menu.
-6. Click Save. Your live GitHub Pages site is now deployed at the URL shown.
-
-< If deployed via Heroku, use the following steps and delete the GitHub steps.>
-
-Heroku was used to deploy the live app. The instructions to achieve this are below:
+Heroku was used to deploy the live application. The instructions to achieve this are below:
 
 1. Log in to Heroku and navigate to your dashboard.
 2. Create a new app with a unique name.
@@ -331,31 +317,66 @@ Heroku was used to deploy the live app. The instructions to achieve this are bel
 
 Testing was ongoing throughout the entire development process. Browser developer tools were used while building to pinpoint and troubleshoot any issues as development progressed, as well as Microsoft Copilot/OpenAI ChatGPT to query specific coding logic queries.
 
-Manual testing was carried out upon completion of the initial development to ensure all acceptance criteria had been met for all user stories. The results of these tests can be viewed below:
+Manual testing was carried out upon completion of the initial development to ensure functionality of all processed was as expected. The results of these tests can be viewed below:
 
-### < Functionality 1 >
+| **Site Area**         | **User Action**                                                                                      | **Expected Result**                                                                                                                       | **Pass/Fail** |
+|-----------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| Header                | Click site logo/title                                                                                | Redirect to Feed page                                                                                                                     | Pass         |
+| Header                | Click Sign Up button                                                                                 | Redirect to Sign Up page                                                                                                                  | Pass         |
+| Sign Up page          | Fill out Sign Up form correctly and click Submit                                                     | Redirect to Feed page as new logged-in user, displaying feedback message at top of page                                                  | Pass         |
+| Sign Up page          | Fill out Sign Up form incorrectly and click Submit                                                   | Validation error displays with instructions to amend                                                                                      | Pass         |
+| Header                | Click Log In button                                                                                  | Redirect to Log In page                                                                                                                   | Pass         |
+| Log In page           | Fill out Log In form correctly and click Submit                                                      | Redirect to Feed page as logged-in user, displaying feedback message at top of page                                                      | Pass         |
+| Log In page           | Fill out Log In form incorrectly and click Submit                                                    | Validation error displays with instructions to amend                                                                                      | Pass         |
+| Header                | Click Log Out button                                                                                 | Redirect to Log Out page                                                                                                                  | Pass         |
+| Log Out page          | Click Log Out button                                                                                 | Redirect to Feed page as logged-out user, displaying feedback message at top of page                                                     | Pass         |
+| Nav icons             | Click Home icon                                                                                      | Redirect to Feed page                                                                                                                     | Pass         |
+| Nav icons             | Click Reviews icon                                                                                   | Redirect to Puzzle List page                                                                                                              | Pass         |
+| Nav icons             | Click Leaderboards icon                                                                              | Redirect to Leaderboards page                                                                                                             | Pass         |
+| Feed page             | Click Sign Up button                                                                                 | Redirect to Sign Up page                                                                                                                  | Pass         |
+| Feed page             | Click New Post button                                                                                | Redirect to Create a Post page                                                                                                            | Pass         |
+| Create a Post page    | Fill out Create a Post form and click Submit                                                         | Redirect to Feed page with new unapproved post at top of feed, displaying feedback message at top of page                                | Pass         |
+| Feed page             | Click Edit button on user-owned post                                                                 | Redirect to Edit Post page                                                                                                                | Pass         |
+| Edit Post page        | Update Post form and click Save                                                                      | Redirect to Post Detail page for that post displaying updated and now unapproved post, also displaying feedback message at top of page   | Pass         |
+| Feed page             | Click Delete button on user-owned post                                                               | Display Delete Post modal                                                                                                                 | Pass         |
+| Delete Post modal     | Click X button                                                                                       | Closes modal                                                                                                                              | Pass         |
+| Delete Post modal     | Click Cancel button                                                                                  | Closes modal                                                                                                                              | Pass         |
+| Delete Post modal     | Click Delete button                                                                                  | Deletes post and redirects to Feed page, displaying feedback message at top of page                                                      | Pass         |
+| Feed page             | Click View Post button on a post                                                                     | Redirect to Post Detail page of that post                                                                                                 | Pass         |
+| Feed page             | Click Previous pagination button                                                                     | Go to previous page of feed                                                                                                               | Pass         |
+| Feed page             | Click Next pagination button                                                                         | Go to next page of feed                                                                                                                   | Pass         |
+| Post Detail page      | Click Edit button on user-owned post                                                                 | Redirect to Edit Post page                                                                                                                | Pass         |
+| Edit Post page        | Update Post form and click Save                                                                      | Redirect to Post Detail page for that post displaying updated and now unapproved post, also displaying feedback message at top of page   | Pass         |
+| Post Detail page      | Click Delete button on user-owned post                                                               | Display Delete Post modal                                                                                                                 | Pass         |
+| Delete Post modal     | Click X button                                                                                       | Closes modal                                                                                                                              | Pass         |
+| Delete Post modal     | Click Cancel button                                                                                  | Closes modal                                                                                                                              | Pass         |
+| Delete Post modal     | Click Delete button                                                                                  | Deletes post and redirects to Feed page, displaying feedback message at top of page                                                      | Pass         |
+| Post Detail page      | Fill out Comment form and click Submit                                                               | New unapproved comment shows in comment list, and feedback message displays at top of page                                               | Pass         |
+| Post Detail page      | Click Edit button on user-owned comment                                                              | Redirect to Edit Comment page                                                                                                             | Pass         |
+| Edit Comment page     | Update Comment form and click Save                                                                   | Redirect to Post Detail page of related post, displaying updated and now unapproved comment, also displaying feedback message at top of page     | Pass         |
+| Post Detail page      | Click Delete button on user-owned comment                                                            | Display Delete Comment modal                                                                                                              | Pass         |
+| Delete Comment modal  | Click X button                                                                                       | Closes modal                                                                                                                              | Pass         |
+| Delete Comment modal  | Click Cancel button                                                                                  | Closes modal                                                                                                                              | Pass         |
+| Delete Comment modal  | Click Delete button                                                                                  | Deletes comment and redirects to related post's Post Detail page, displaying feedback message at top of page                             | Pass         |
+| Puzzle List page      | Click See Reviews button on a puzzle                                                                 | Redirects to Puzzle Detail page                                                                                                           | Pass         |
+| Puzzle List page      | Click Previous pagination button                                                                     | Go to previous page of Puzzle List                                                                                                        | Pass         |
+| Puzzle List page      | Click Next pagination button                                                                         | Go to next page of Puzzle List                                                                                                            | Pass         |
+| Puzzle Detail page    | Fill out Review form and click Submit                                                                | New unapproved review shows in review list, displaying feedback message at top of page                                                   | Pass         |
+| Puzzle Detail page    | Click Edit button on user-owned review                                                               | Redirect to Edit Review page                                                                                                              | Pass         |
+| Edit Review page      | Update Review form and click Submit                                                                  | Redirect to Puzzle Detail page of related puzzle, displaying updated and now unapproved review, and displaying feedback message at top of page   | Pass         |
+| Puzzle Detail page    | Click Delete button on user-owned review                                                             | Display Delete Review modal                                                                                                               | Pass         |
+| Puzzle Detail page    | Click X button                                                                                       | Closes modal                                                                                                                              | Pass         |
+| Puzzle Detail page    | Click Cancel button                                                                                  | Closes modal                                                                                                                              | Pass         |
+| Puzzle Detail page    | Click Delete button                                                                                  | Deletes review and redirects to related puzzle's Puzzle Detail page, displaying feedback message at top of page                          | Pass         |
+| Leaderboards page     | Click Sign Up button                                                                                 | Redirects to Sign Up page                                                                                                                 | Pass         |
+| Leaderboards page     | Click Submit Time button                                                                             | Redirects to Submit Time page                                                                                                             | Pass         |
+| Submit Time page      | Fill out Submit Time form correctly and click submit                                                 | Redirect to Leaderboards page with submitted time now showing in relevant puzzle's leaderboard                                           | Pass         |
+| Submit Time page      | Fill out Submit Time form incorrectly and click submit                                               | Validation error displays with instructions to amend                                                                                      | Pass         |
+| Submit Time page      | Fill out Submit Time form for puzzle that already has your time                                      | Error message displays advising that only one time can be submitted per puzzle                                                           | Pass         |
+| Leaderboards page     | Click Update Time button                                                                             | Redirect to Update Time page                                                                                                              | Pass         |
+| Update Time page      | Fill out Update Time form correctly and click submit                                                 | Redirect to Leaderboards page with updated time now showing in relevant puzzle's leaderboard                                             | Pass         |
+| Update Time page      | Fill out Update Time form incorrectly and click submit                                               | Validation error displays with instructions to amend                                                                                      | Pass         |
 
-< The web application should be able to do this. >
-
-#### Test and Result
-
-< The following test was carried out and the result was this. >
-
-### < Functionality 2 >
-
-< The web application should be able to do this. >
-
-#### Test and Result
-
-< The following test was carried out and the result was this. >
-
-### < Functionality 3 >
-
-< The web application should be able to do this. >
-
-#### Test and Result
-
-< The following test was carried out and the result was this. >
 
 ## Validation
 
@@ -394,13 +415,19 @@ Various validation software were used to validate and/or lint the code in each o
 - - -
 
 ## AI Usage
-< note on the way AI has been used during the project, with bullet points below: >
+AI has been used extensively throughout this project, with the main assistant of choice being Microsoft Copilot, however OpenAI's ChatGPT has also been used on occassion. Listed below are the ways AI has specifically been used during this project:
 
-* < bullet point 1 >
+* Troubleshooting Django logic in Python files
 
-* < bullet point 2 >
+* Refining template logic in HTML files
 
-* < bullet point 3 >
+* Generating dummy usernames for site users
+
+* Converting Excel files into markdown format (e.g. for the markdown table featured in the Testing section of this README)
+
+* Scanning code files for formatting and PEP8 issues to expedite the code-tidying process
+
+* General sounding board (e.g. asking if certain implementations or functionalities would be a good idea before commiting to them)
 
 Please note: although AI has been utilised during the development of this app, any and all AI outputs have been scrutinised and considered carefully before being implemented. The developer appreciates that AI is a tool to be used and not relied on without complete understanding of the output.
 
