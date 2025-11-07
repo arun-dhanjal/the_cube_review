@@ -76,8 +76,8 @@
                                 
                                     {% if time.user == request.user %}
                                         <div class="d-flex flex-row justify-content-center mt-3 gap-3">
-                                            <a href="{% url 'update_time' time.pk %}" class="btn btn-sm shadow-sm">Update time</a>
-                                            <button type="button" class="btn btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete time</button>
+                                            <a href="{% url 'update_time' time.pk %}" class="btn btn-sm shadow-sm">Update Time</a>
+                                            <button type="button" class="btn btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ time.pk }}">Delete Time</button>
                                         </div>
 
                                         <!-- Modal when deleting time submission -->

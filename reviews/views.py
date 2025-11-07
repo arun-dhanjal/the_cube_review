@@ -127,5 +127,5 @@ def delete_review(request, pk):
 
     puzzle_pk = review.puzzle.pk
     review.delete()
-    messages.success(request, "review deleted successfully.")
+    messages.success(request, "Review deleted successfully.")
     return redirect("puzzle_detail", pk=puzzle_pk)

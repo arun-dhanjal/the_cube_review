@@ -97,7 +97,7 @@ def update_time(request, pk):
     if request.method == "POST":
         form = TimeSubmissionForm(request.POST, instance=time_submission)
         if form.is_valid():
-            form.save
+            form.save()
             messages.success(request, "Time updated successfully.")
             return redirect("leaderboards")
 
