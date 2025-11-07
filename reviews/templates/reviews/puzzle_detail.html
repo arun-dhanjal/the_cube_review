@@ -181,7 +181,7 @@
                             <p class="small mb-0">{{ review.created_at|date:"l j F Y, H:i" }}</p>
 
                             <!-- Edited info -->
-                            {% if review.updated_at > review.created_at %}
+                            {% if review.updated_at|date:"U" > review.created_at|date:"U" %}
                                 <p class="small mb-0">*Edited {{ review.updated_at|date:"l j F Y, H:i" }}</p>
                             {% endif %}                            
 

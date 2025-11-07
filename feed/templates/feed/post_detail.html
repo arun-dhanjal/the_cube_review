@@ -61,7 +61,7 @@
                         <p class="small mb-0">{{ post.created_at|date:"l j F Y, H:i" }}</p>
 
                         <!-- Edited info -->
-                        {% if post.updated_at > post.created_at %}
+                        {% if post.updated_at|date:"U" > post.created_at|date:"U" %}
                             <p class="small mb-0">*Edited {{ post.updated_at|date:"l j F Y, H:i" }}</p>
                         {% endif %}                        
 
@@ -147,7 +147,7 @@
                             <p class="small mb-0">{{ comment.created_at|date:"l j F Y, H:i" }}</p>
 
                             <!-- Edited info -->
-                            {% if comment.updated_at > comment.created_at %}
+                            {% if comment.updated_at|date:"U" > comment.created_at|date:"U" %}
                                 <p class="small mb-0">*Edited {{ comment.updated_at|date:"l j F Y, H:i" }}</p>
                             {% endif %}                            
 
