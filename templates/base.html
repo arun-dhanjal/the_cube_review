@@ -23,11 +23,13 @@
     <nav class="navbar sticky-top mb-3">
         <div class="container-fluid flex-column flex-lg-row justify-content-between align-items-center">
 
-            <!-- Site name -->
-            <a class="navbar-brand my-3 d-flex align-items-center" href="{% url 'feed' %}">
-                <img src="{% static 'images/logo.png' %}" alt="Logo: Rubiks cube" class="site-title me-3">
-                <img src="{% static 'images/site-title.png' %}" alt="Site title: The Cube Review" class="site-title">
-            </a>
+            <!-- Site logo and name -->
+            <h1 class="my-0">
+                <a class="navbar-brand my-3 d-flex align-items-center" href="{% url 'feed' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo: Rubiks cube" class="site-title me-3">
+                    <img src="{% static 'images/site-title.png' %}" alt="Site title: The Cube Review" class="site-title">
+                </a>
+            </h1>
 
             <!-- Authentication -->
             <div class="d-flex flex-row align-items-center">

@@ -80,7 +80,7 @@
                         <!-- Optional image -->
                         {% if post.image %}
                             <div class="d-flex justify-content-center align-items-center image-box">
-                                <img src="{{ post.image.url }}" class="shadow rounded" alt="Post image">
+                                <img src="{{ post.image.url }}" class="shadow rounded" alt="Image from {{ post.author.username }}'s post on {{ post.created_at|date:'F j, Y, g:i A' }}">
                             </div>
                         {% endif %}
                         
