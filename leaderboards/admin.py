@@ -11,5 +11,5 @@ class TimeSubmissionAdmin(admin.ModelAdmin):
 
     Displays submission string, puzzle, and user.
     """
-    list_display = ("__str__", "puzzle", "user")
+    list_display = ("__str__", "user", "puzzle", "submitted_at")
     list_filter = ("puzzle", "user")

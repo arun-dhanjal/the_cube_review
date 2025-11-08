@@ -13,7 +13,13 @@ class PostAdmin(admin.ModelAdmin):
 
     Includes a custom action to bulk-approve selected posts.
     """
-    list_display = ("__str__", "author", "created_at", "is_approved")
+    list_display = (
+        "__str__",
+        "author",
+        "created_at",
+        "updated_at",
+        "is_approved",
+    )
     list_filter = ("author", "is_approved",)
     actions = ["approve_posts"]
 
@@ -32,9 +38,16 @@ class CommentAdmin(admin.ModelAdmin):
 
     Includes a custom action to bulk-approve selected comments.
     """
-    list_display = ("__str__", "author", "created_at", "is_approved")
+    list_display = (
+        "__str__",
+        "author",
+        "created_at",
+        "updated_at",
+        "is_approved",
+    )
     list_filter = ("author", "is_approved",)
     actions = ["approve_comments"]
+    ordering = ("-created_at",)
 
     def approve_comments(self, request, queryset):
         """Bulk-approve selected comments."""

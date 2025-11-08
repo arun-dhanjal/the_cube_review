@@ -9,7 +9,8 @@ class Post(models.Model):
     """
     Represents a user-created :model:`feed.Post` with optional image.
 
-    Includes approval status and timestamps for moderation and display ordering.
+    Includes approval status and timestamps for moderation and display
+    ordering.
 
     Related to :model:`auth.User` via the ``author`` field.
 
@@ -51,14 +52,18 @@ class Post(models.Model):
         """
         Returns a readable string representation of the post.
         """
-        return f"Post by {self.author.username} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        return (
+            f"Post by {self.author.username} on "
+            f"{self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        )
 
 
 class Comment(models.Model):
     """
     Represents a :model:`feed.Comment` made by a user on a specific post.
 
-    Includes approval status and timestamps for moderation and display ordering.
+    Includes approval status and timestamps for moderation and display
+    ordering.
 
     Related to :model:`auth.User` via the ``author`` field,
     and to :model:`feed.Post` via the ``post`` field.

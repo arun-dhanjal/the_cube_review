@@ -11,7 +11,7 @@ class PuzzleAdmin(admin.ModelAdmin):
 
     Displays puzzle name and category.
     """
-    list_display = ("name", "category")
+    list_display = ("name", "category",)
     list_filter = ("category",)
 
 
@@ -24,9 +24,17 @@ class ReviewAdmin(admin.ModelAdmin):
 
     Includes a custom action to bulk-approve selected reviews.
     """
-    list_display = ("__str__", "puzzle", "author", "created_at", "is_approved")
+    list_display = (
+        "__str__",
+        "puzzle",
+        "author",
+        "created_at",
+        "updated_at",
+        "is_approved",
+    )
     list_filter = ("puzzle", "author", "is_approved",)
     actions = ["approve_reviews"]
+    ordering = ("-created_at",)
 
     def approve_reviews(self, request, queryset):
         """Bulk-approve selected reviews."""

@@ -392,7 +392,7 @@ Responsivity tests were carried out to ensure that the application displayed cor
 
 Various validation software were used to validate and/or lint the code in each of the files written for this project, with any raised errors being fixed before closing off the project. The screenshots below show evidence of this:
 
-#### [W3C Validator: HTML](https://validator.w3.org/)
+### [W3C Validator: HTML](https://validator.w3.org/)
 
 Feed page
 ![HTML validation Feed page screenshot](/readme-docs/html-validation-feed-page.png)
@@ -436,23 +436,91 @@ Submit Time page
 Update Time page
 ![HTML validation Update Time page screenshot](/readme-docs/html-validation-update-time-page.png)
 
-#### [W3C Validator: CSS](https://jigsaw.w3.org/css-validator/)
+### [W3C Validator: CSS](https://jigsaw.w3.org/css-validator/)
 
 ![CSS validation screenshot](/readme-docs/css-validation.png)
 
-#### [CI Python Linter: Python](https://pep8ci.herokuapp.com/)
+### [CI Python Linter: Python](https://pep8ci.herokuapp.com/)
 
-![Python lint screenshot](/readme-docs/python-lint.png)
+config/asgi.py
+![Python linter config/asgi.py screenshot](/readme-docs/python-linter-config-asgi.png)
 
-#### [WAVE: Web Accessibility Evaluation Tool](https://wave.webaim.org/)
+config/settings.py
+![Python linter config/settings.py screenshot](/readme-docs/python-linter-config-settings.png)
+
+config/urls.py
+![Python linter config/urls.py screenshot](/readme-docs/python-linter-config-urls.png)
+
+config/wsgi.py
+![Python linter config/wsgi.py screenshot](/readme-docs/python-linter-config-wsgi.png)
+
+feed/admin.py
+![Python linter feed/admin.py screenshot](/readme-docs/python-linter-feed-admin.png)
+
+feed/apps.py
+![Python linter feed/apps.py screenshot](/readme-docs/python-linter-feed-apps.png)
+
+feed/forms.py
+![Python linter feed/forms.py screenshot](/readme-docs/python-linter-feed-forms.png)
+
+feed/models.py
+![Python linter feed/models.py screenshot](/readme-docs/python-linter-feed-models.png)
+
+feed/urls.py
+![Python linter feed/urls.py screenshot](/readme-docs/python-linter-feed-urls.png)
+
+feed/views.py
+![Python linter feed/views.py screenshot](/readme-docs/python-linter-feed-views.png)
+
+leaderboards/admin.py
+![Python linter leaderboards/admin.py screenshot](/readme-docs/python-linter-leaderboards-admin.png)
+
+leaderboards/apps.py
+![Python linter leaderboards/apps.py screenshot](/readme-docs/python-linter-leaderboards-apps.png)
+
+leaderboards/forms.py
+![Python linter leaderboards/forms.py screenshot](/readme-docs/python-linter-leaderboards-forms.png)
+
+leaderboards/models.py
+![Python linter leaderboards/models.py screenshot](/readme-docs/python-linter-leaderboards-models.png)
+
+leaderboards/urls.py
+![Python linter leaderboards/urls.py screenshot](/readme-docs/python-linter-leaderboards-urls.png)
+
+leaderboards/views.py
+![Python linter leaderboards/views.py screenshot](/readme-docs/python-linter-leaderboards-views.png)
+
+reviews/admin.py
+![Python linter reviews/admin.py screenshot](/readme-docs/python-linter-reviews-admin.png)
+
+reviews/apps.py
+![Python linter reviews/apps.py screenshot](/readme-docs/python-linter-reviews-apps.png)
+
+reviews/forms.py
+![Python linter reviews/forms.py screenshot](/readme-docs/python-linter-reviews-forms.png)
+
+reviews/models.py
+![Python linter reviews/models.py screenshot](/readme-docs/python-linter-reviews-models.png)
+
+reviews/urls.py
+![Python linter reviews/urls.py screenshot](/readme-docs/python-linter-reviews-urls.png)
+
+reviews/views.py
+![Python linter reviews/views.py screenshot](/readme-docs/python-linter-reviews-views.png)
+
+manage.py
+![Python linter manage.py screenshot](/readme-docs/python-linter-manage.png)
+
+
+### [WAVE: Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 
 ![WAVE validation](/readme-docs/wave.png)
 
-#### Lighthouse: Mobile
+### Lighthouse: Mobile
 
 ![Lighthouse mobile validation screenshot](/readme-docs/lighthouse-mobile.png)
 
-#### Lighthouse: Desktop
+### Lighthouse: Desktop
 
 ![Lighthouse desktop validation screenshot](/readme-docs/lighthouse-desktop.png)
 

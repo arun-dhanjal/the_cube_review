@@ -40,7 +40,8 @@ class Leaderboards(generic.ListView):
 
 def submit_time(request):
     """
-    Allows authenticated users to submit a :model:`leaderboards.TimeSubmission`.
+    Allows authenticated users to submit a
+    :model:`leaderboards.TimeSubmission`.
 
     Prevents duplicate submissions per puzzle.
 
