@@ -29,6 +29,9 @@ The Cube Review is a mini social platform built for twisty puzzle enthusiasts. I
 * [Deployment](#Deployment)
 
 * [Testing](#Testing)
+  * [Manual Functionality Testing](#Manual-Functionality-Testing)
+  * [Device Responsivity Testing](#Device-Responsivity-Testing)
+
 * [Validation](#Validation)
 
 * [AI Usage](#AI-Usage)
@@ -315,9 +318,9 @@ Heroku was used to deploy the live application. The instructions to achieve this
 
 ## Testing
 
-Testing was ongoing throughout the entire development process. Browser developer tools were used while building to pinpoint and troubleshoot any issues as development progressed, as well as Microsoft Copilot/OpenAI ChatGPT to query specific coding logic queries.
+### Manual Functionality Testing
 
-Manual testing was carried out upon completion of the initial development to ensure functionality of all processed was as expected. The results of these tests can be viewed below:
+Manual testing was carried out to ensure functionality of all processes was as expected. The results of these tests are below:
 
 | **Site Area**         | **User Action**                                                                                      | **Expected Result**                                                                                                                       | **Pass/Fail** |
 |-----------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|--------------|
@@ -377,6 +380,13 @@ Manual testing was carried out upon completion of the initial development to ens
 | Update Time page      | Fill out Update Time form correctly and click submit                                                 | Redirect to Leaderboards page with updated time now showing in relevant puzzle's leaderboard                                             | Pass         |
 | Update Time page      | Fill out Update Time form incorrectly and click submit                                               | Validation error displays with instructions to amend                                                                                      | Pass         |
 
+### Device Responsivity Testing
+
+Responsivity tests were carried out to ensure that the application displayed correctly on a number of different device sizes. For completeness, all of the default device sizes in Google Chrome's Developer Tools were tested for responsiveness by emulating each device and then navigating through the web application to note any layout or formatting issues. Almost all devices returned zero issues with two exceptions, detailed below:
+
+- Microsoft Lumia 550: Dev Tools defaults to a landscape view for this device, which makes the viewport height very short, leading to a sub-optimal user experience. However, the application is not intended to be used in landscape mode on mobile devices, and in fact the default landscape view for this device in Dev Tools is a known error, with the expecting view being portrait as is the case with most mobile devices. As such, this case is of no concern for this application.
+
+- JioPhone 2: The viewport for this device is very small at just 240 x 320 px (it is defined as as "compact device") which causes issues with layout. However, this application is not intended to be used on such small devices, and so is of no concern for this application.
 
 ## Validation
 
