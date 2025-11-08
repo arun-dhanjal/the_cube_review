@@ -395,9 +395,46 @@ Various validation software were used to validate and/or lint the code in each o
 #### [W3C Validator: HTML](https://validator.w3.org/)
 
 Feed page
-![HTML validation screenshot](/readme-docs/html-validation-feed-page.png)
+![HTML validation Feed page screenshot](/readme-docs/html-validation-feed-page.png)
 
+Sign Up page
+![HTML validation Sign Up page screenshot](/readme-docs/html-validation-sign-up-page.png)
 
+Log In page
+![HTML validation Log In page screenshot](/readme-docs/html-validation-log-in-page.png)
+
+Log Out page
+![HTML validation Log Out page screenshot](/readme-docs/html-validation-log-out-page.png)
+
+Create Post page
+![HTML validation Create Post page screenshot](/readme-docs/html-validation-create-post-page.png)
+
+Edit Post page
+![HTML validation Edit Post page screenshot](/readme-docs/html-validation-edit-post-page.png)
+
+Post Detail page
+![HTML validation Post Detail page screenshot](/readme-docs/html-validation-post-detail-page.png)
+
+Edit Comment page
+![HTML validation Edit Comment page screenshot](/readme-docs/html-validation-edit-comment-page.png)
+
+Puzzle List page
+![HTML validation Puzzle List page screenshot](/readme-docs/html-validation-puzzle-list-page.png)
+
+Puzzle Detail page
+![HTML validation Puzzle Detail page screenshot](/readme-docs/html-validation-puzzle-detail-page.png)
+
+Edit Review page
+![HTML validation Edit Review page screenshot](/readme-docs/html-validation-edit-review-page.png)
+
+Leaderboards page
+![HTML validation Leaderboards page screenshot](/readme-docs/html-validation-leaderboards-page.png)
+
+Submit Time page
+![HTML validation Submit Time page screenshot](/readme-docs/html-validation-submit-time-page.png)
+
+Update Time page
+![HTML validation Update Time page screenshot](/readme-docs/html-validation-update-time-page.png)
 
 #### [W3C Validator: CSS](https://jigsaw.w3.org/css-validator/)
 
