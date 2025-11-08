@@ -394,22 +394,20 @@ Various validation software were used to validate and/or lint the code in each o
 
 #### [W3C Validator: HTML](https://validator.w3.org/)
 
+Feed page
+![HTML validation screenshot](/readme-docs/html-validation-feed-page.png)
 
-![HTML validation screenshot](/readme-docs/html-validation.png)
 
-#### W3C Validator: CSS
+
+#### [W3C Validator: CSS](https://jigsaw.w3.org/css-validator/)
 
 ![CSS validation screenshot](/readme-docs/css-validation.png)
 
-#### JSHint: JavaScript
-
-![JS lint screenshot](/readme-docs/js-lint.png)
-
-#### CI Python Linter: Python
+#### [CI Python Linter: Python](https://pep8ci.herokuapp.com/)
 
 ![Python lint screenshot](/readme-docs/python-lint.png)
 
-#### WAVE: Web Accessibility Evaluation Tool
+#### [WAVE: Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 
 ![WAVE validation](/readme-docs/wave.png)
 
