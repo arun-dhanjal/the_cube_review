@@ -107,7 +107,7 @@
                             {% endif %}
 
                             <!-- Puzzle description -->
-                            <p class="card-text mb-3">{{ puzzle.description }}</p>
+                            <div class="card-text mb-3">{{ puzzle.description }}</div>
 
                             <!-- Full width See Reviews button -->
                             <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded" aria-label="See reviews for {{ puzzle.name }}">See Reviews</a>

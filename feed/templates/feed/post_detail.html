@@ -75,7 +75,7 @@
                         <hr>
 
                         <!-- Post text -->
-                        <p class="card-text">{{ post.body|linebreaks }}</p>
+                        <div class="card-text">{{ post.body|linebreaks }}</div>
 
                         <!-- Optional image -->
                         {% if post.image %}
@@ -161,7 +161,7 @@
                             <hr>
 
                             <!-- Comment text -->
-                            <p class="card-text mb-3">{{ comment.body|linebreaks }}</p>
+                            <div class="card-text mb-3">{{ comment.body|linebreaks }}</div>
                         
                         </div>
                     </div>

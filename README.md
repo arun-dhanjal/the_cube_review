@@ -392,9 +392,8 @@ Responsivity tests were carried out to ensure that the application displayed cor
 
 Various validation software were used to validate and/or lint the code in each of the files written for this project, with any raised errors being fixed before closing off the project. The screenshots below show evidence of this:
 
-< delete the following as appropriate >
+#### [W3C Validator: HTML](https://validator.w3.org/)
 
-#### W3C Validator: HTML
 
 ![HTML validation screenshot](/readme-docs/html-validation.png)
 
