@@ -11,7 +11,7 @@
                 <div class="text-center">
                     {% if user.is_authenticated %}
                     <h2 class="mb-3 fw-bold">Set a new record? Share your success:</h2>
-                    <a class="btn me-2 shadow-sm mb-3" href="{% url 'submit_time' %}">Submit Time</a>
+                    <a class="btn shadow-sm mb-3" href="{% url 'submit_time' %}">Submit Time</a>
                     {% else %}
                     <h2 class="mb-3 fw-bold">Want to be on our leaderboards? Sign up now:</h2>
                     <a class="btn shadow-sm mb-3" href="{% url 'account_signup' %}">Sign Up</a>

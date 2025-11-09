@@ -97,7 +97,7 @@
 
                             </div>
 
-                            <hr>
+                            <hr class="mt-3 mb-0">
 
                             <!-- Puzzle image -->
                             {% if puzzle.image %}
@@ -107,7 +107,7 @@
                             {% endif %}
 
                             <!-- Puzzle description -->
-                            <div class="card-text mb-3">{{ puzzle.description }}</div>
+                            <div class="card-text mb-4">{{ puzzle.description }}</div>
 
                             <!-- Full width See Reviews button -->
                             <a href="{% url 'puzzle_detail' puzzle.pk %}" class="btn w-100 shadow rounded" aria-label="See reviews for {{ puzzle.name }}">See Reviews</a>
