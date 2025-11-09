@@ -187,57 +187,315 @@ The colour palette was created using the [Coolors](https://coolors.co/) website.
 Wireframes were created based on the initial page layout designs for various screen sizes. The final deployed application has some minor stylistic changes/additions, but for the most part follows the same general design. Wireframes shown below:
 
 #### Wireframe Mobile
-![Wireframe 1](/readme-docs/wireframe-mobile.png)
+![Wireframe Mobile](/readme-docs/wireframe-mobile.png)
 #### Wireframe Tablet
-![Wireframe 2](/readme-docs/wireframe-tablet.png)
+![Wireframe Tablet](/readme-docs/wireframe-tablet.png)
 #### Wireframe Desktop
-![Wireframe 3](/readme-docs/wireframe-desktop.png)
+![Wireframe Desktop](/readme-docs/wireframe-desktop.png)
 
 ### Database Structure
 
 The back-end databases were designed at the start of the project with the intention of remaining unchanged througout the development in order to avoid later complications. The Entity Relationship Diagram (ERD) can be viewed below:
 
-![< ERD 1 >](/readme-docs/erd.png)
+![< ERD >](/readme-docs/erd.png)
 
 ### Features
 
-* < App Feature 1: >
+#### Site header
 
-  * < App Feature bullet point 1 >
+  ![< Site header logged out >](/readme-docs/feature-site-header-logged-out.png)
 
-  * < App Feature bullet point 2 >
+  ![< Site header logged in >](/readme-docs/feature-site-header-logged-in.png)
 
-  * < App Feature bullet point 3 >
+  * Site header contains site logo, site title, auth status, and auth buttons
 
-  ![< App Feature 1 >](/readme-docs/app-feature-1.png)
+  * Site logo and header serve as navigation links to Feed page (essentially the home page)
 
-* < App Feature 2: >
+  * Auth area changes depending on authentication status: Sign Up and Log In if not authenticated; "Logged in as" message and Log Out button if authenticated
 
-  * < App Feature bullet point 1 >
+  * Site header sticks to the top of the window on every page in the site
 
-  * < App Feature bullet point 2 >
+#### Sign Up form
 
-  * < App Feature bullet point 3 >
+  ![ Sign Up form ](/readme-docs/feature-sign-up-form.png)
 
-  ![< App Feature 1 >](/readme-docs/app-feature-2.png)
+  * Clicking the Sign Up button on the site header redirects to a page with a Sign Up form
 
-* < App Feature 3: >
+  * Fields for username, email (optional), password, and password (again) are available
 
-  * < App Feature bullet point 1 >
+  * When clicking Sign Up, incorrect credentials will bring up a validation errors and/or a validation message at the top of the screen
 
-  * < App Feature bullet point 2 >
+  * Correct credentials will instead redirect to the Feed page, now with logged-in status
 
-  * < App Feature bullet point 3 >
+#### Log In form
 
-  ![< App Feature 1 >](/readme-docs/app-feature-3.png)
+  ![ Log In form ](/readme-docs/feature-log-in-form.png)
 
-* Future implementations:
+  * Clicking the Log In button on the site header redirects to a page with a Log In form
 
-  * < Future implementation 1 >
+  * Fields for username and password are available
 
-  * < Future implementation 2 >
+  * When clicking Log In, incorrect credentials will bring up a validation errors and/or a validation message at the top of the screen
 
-  * < Future implementation 3 >
+  * Correct credentials will instead redirect to the Feed page, now with logged-in status
+
+#### Log Out confirmation
+
+  ![ Log Out confirmation ](/readme-docs/feature-log-out-confirmation.png)
+
+  * Clicking the Log Out button on the site header redirects to a page with a Log Out confirmation message and button
+
+  * Clicking the Log Out button will redirect to the Feed page, now with logged-out status
+
+#### Navigation icons
+
+  ![< Navigaton icons>](/readme-docs/feature-navigation-icons.png)
+
+  * Navigation icons allow for easy navigation between the three main areas of the website: Feed (home icon); Reviews (stars icon); and Leaderboards (trophy icon)
+
+  * Black when inactive, but red on hover
+
+  * Red when active, including underline to make current page status clear
+
+  * Navigation icons are at the top of every page, however they are not sticky like the site header, as this will take up too much of the viewport
+
+#### Feedback messages
+
+  ![ Feedback messages ](/readme-docs/feature-feedback-messages.png)
+
+  * Feedback messages appear at the top of the page (below the navigation icons) to provide the user with feedback following actions they have taken
+
+  * Actions include things such as: changing authentication status; creating content; updating content; deleting content; making a request that cannot be actioned
+
+#### Feed page
+
+  ![< Feed page >](/readme-docs/feature-feed-page.png)
+
+  * The Feed page is essentially the home page for this website, given that this is a social platform
+
+  * The Feed page consists of user-submitted posts, with the most recent at the top of the feed
+
+  * The Feed page is paginated such that only 5 posts show per page
+
+  * At the top of the first page there is a welcome message with a call-to-action button - these change depending on authentication status
+
+  * Each post consists of: the poster's name; posted date; edited date (if the post has been edited); text content (mandatory); image (optional); and a button to view the detail page of the post
+
+  * Posts that have been created by the logged-in user will also feature Edit and Delete buttons at the top right of the post
+
+#### Pagination buttons
+
+  ![< Pagination buttons >](/readme-docs/feature-pagination-buttons.png)
+
+  * Pagination buttons feature at the bottom of the following pages: Feed page; Puzzle List page; Leaderboards page
+
+  * Previous and Next buttons sit either side of a current page indicator
+
+  * The previous and next buttons will only be highlighted and clickable if there is actually a page to navigate to (i.e. there is a previous or next page based on your current page location)
+
+#### Create Post form
+
+  ![< Create Post form >](/readme-docs/feature-create-post-form.png)
+
+  * Clicking the New Post button on the Feed page redirects you to a page featuring the Create Post form
+
+  * This form will accept text in the body field, and allows for an image upload
+
+  * Clicking the submit button will redirect back to the Feed page, with the new post featuring at the top of the feed, appending approval by admin
+
+  * Unapproved posts will only show on the feed for the user who posted it - it will only show to other site users once the status has changed to approved
+
+#### Content pending approval
+
+  ![< Content pending approval >](/readme-docs/feature-content-pending-approval.png)
+
+  * Content will be "Pending approval" on first creation, and following any edit requests
+
+  * Content that is pending approval will be highlighted in a light yellow colour, with a "Pending approval" tag written in blue underneath the timestamp(s)
+
+  * This applies to: posts; comments; reviews
+
+#### Edit Post form
+
+  ![< Edit Post form >](/readme-docs/feature-edit-post-form.png)
+
+  * Clicking the Edit icon (a pencil) on your post will redirect you to a page containing the Edit Post form
+
+  * This form will be prepopulated with the data from the post, including the text and a preview of the attached image (if there was one)
+
+  * The text can be overwritten and the image can be replaced or removed
+
+  * After clicking the Save button, you will be redirected to the Post Detail page, with the post status now set to "Pending approval"
+
+#### Edited content
+
+  ![< Edited content >](/readme-docs/feature-edited-content.png)
+
+  * Content that has been edited will feature an *Edited timestamp under the created timestamp
+
+  * This applies to: posts; comments; reviews
+
+#### Delete Post modal
+
+  ![< Delete Post modal >](/readme-docs/feature-delete-post-modal.png)
+
+  * Clicking the Delete icon (a bin) on your post will bring up a modal to confirm your action
+
+  * The modal has options to cancel by clicking the X icon or the cancel button
+
+  * Clicking the Delete button will confirm the action, delete the post from the database, and redirect the user to the Feed page
+
+#### Post Detail page
+
+  ![< Post Detail page form >](/readme-docs/feature-post-detail-page.png)
+
+  * Clicking the View Post button on a post in the Feed page will redirect you to the specific detail page of that post
+
+  * This page features the same details from that post, excluding the View Post button
+
+  * Underneath the post will be a comments section, which consists of any posted comments and a comment form to add new comments (only visible if logged in)
+
+#### Comments section
+
+  ![< Comments section >](/readme-docs/feature-comments-section.png)
+
+  * Comments are listed in the comments section underneath the post in the post detail page
+
+  * Comments are ordered by date descending - the earliest comments are at the top of the list
+
+  * Comments will be unapproved on first creation, and as with posts the unapproved comments will only be visible to the commenting user
+
+  * Each comment contains the following details: username; timestamp(s); pending approval tag (if applicable); comment text
+
+  * Comments can also be edited and deleted in the same way as posts
+
+#### Add Comment form
+
+  ![< Add Comment form >](/readme-docs/feature-add-comment-form.png)
+
+  * The Add Comment form below the list of comments features just one field to add text to your comment
+
+  * Clicking the Submit button will add the comment to the bottom of the list of comments, unapproved and pending approval
+
+#### Puzzle List page
+
+  ![< Puzzle List page >](/readme-docs/feature-puzzle-list-page.png)
+
+  * Clicking the stars icon in the icon navigation section will redirect you to the Puzzle List page
+
+  * This functions similarly to the Feed page in that you will see a paginated list of cards, however instead of posts it will be puzzle listings
+
+  * These puzzle listings will feature: the puzzle name; the puzzle category; the average rating from all of its puzzle reviews (denoted by filled stars); the total number of reviews (in brackets next to the stars); an image of the puzzle; a short puzzle description; and a button to see the detail page of the puzzle
+
+#### Puzzle Detail page
+
+  ![< Puzzle Detail page >](/readme-docs/feature-puzzle-detail-page.png)
+
+  * Clicking the See Reviews button will take you to the puzzle detail page, which features a list of reviews for that puzzle
+
+  * This page features the same details from puzzle listing, excluding the See Reviews button
+
+  * Underneath the post will be a reviews section, which consists of any posted reviews and a review form to add new reviews (only visible if logged in)
+
+#### Reviews section
+
+  ![< Reviews section >](/readme-docs/feature-reviews-section.png)
+
+  * Reviews are listed in the reviews section underneath the puzzle in the puzzle detail page
+
+  * Reviews are ordered by date descending - the earliest reviews are at the top of the list
+
+  * Reviews will be unapproved on first creation, and as with posts and comments the unapproved reviews will only be visible to the reviewing user
+
+  * Each review contains the following details: username; submitted rating out of 5; timestamp(s); pending approval tag (if applicable); review text
+
+  * Reviews can also be edited and deleted in the same way as posts and comments
+
+#### Add Review form
+
+  ![< Add Review form >](/readme-docs/feature-add-review-form.png)
+
+  * The Add Review form below the list of reviews features two fields: rating and review text
+
+  * The rating can be selected as a number from 1 to 5, which will then translate into the star icons on the submitted review
+
+  * Clicking the Submit button will add the review to the bottom of the list of reviews, unapproved and pending approval
+
+#### Leaderboards page
+
+  ![< Leaderboards page >](/readme-docs/feature-leaderboards-page.png)
+
+  * Clicking the trophy icon in the icon navigation section will redirect you to the Leaderboards page
+
+  * This functions similarly to the Feed and Puzzle List pages in that you will see a paginated list of cards, however instead of posts or reviews it will be solve-time leaderboards
+
+  * A leaderboard will be available for every puzzle that featured on the Puzzle List page
+
+  * Each leaderboard will consist of the following: the puzzle name; a table of all submitted solve-times for that puzzle
+
+  * The table will consist of: rank; username; time (in hours, minutes, and seconds); and date of submission
+
+  * Entries will be ordered according to the fastest times i.e. the fastest time will be at the top of the list, ranked #1
+
+  * If a user is logged in and has submitted a time, their time will be highlighted in bold text
+
+  * In addition, the user will be able to update or delete their time submission
+
+  * Note that submissions and updates work different here: only one submission can be made per user per puzzle, and so users will not be able to submit a new time for a puzzle they have already submitted to - they must update that leaderboard
+
+#### Submit Time form
+
+  ![< Submit Time form >](/readme-docs/feature-submit-time-form.png)
+
+  * Clicking the Submit Time button redirects you to a page featuring the Submit Time form
+
+  * This form includes the following fields: puzzle (a dropdown including all puzzles from the Puzzle List page); hours; minutes; seconds
+
+  * The time fields have validation applied and will not allow for invalid times to be submitted
+
+  * After filling out the form correctly, clicking the Submit button will redirect you to the Leaderboards page, where your time will now be included in the relevant leaderboard
+
+#### Update Time form
+
+  ![< Update Time form >](/readme-docs/feature-update-time-form.png)
+
+  * Clicking the Update Time button redirects you to a page featuring the Update Time form
+
+  * This form includes the same fields as the Submit Time form, however the fields will be prepopulated with the current solve-time data
+
+  After updating the form and clicking the Save button, you will be redirected to the Leaderboards page with the new entry now featuring in the relevant leaderboard
+
+#### Delete Time modal
+
+  ![< Delete Time modal >](/readme-docs/feature-delete-time-modal.png)
+
+  * Clicking the Delete Time button on a leaderboard will bring up a modal to confirm your action
+
+  * The modal has options to cancel by clicking the X icon or the cancel button
+
+  * Clicking the Delete button will confirm the action, delete the time submission from the database, and redirect the user the Leaderboards page where the time submission will no longer feature on the leaderboard
+
+#### Site footer
+
+  ![ Site footer ](/readme-docs/feature-site-footer.png)
+
+  * Site footer that features at the bottom of every page in the site
+
+  * Contains minimal information about the site
+
+  * Retains same colour scheme as the site header for thematic consistency
+
+#### Future implementations:
+
+Although all must-have, should-have, and could-have user stories were fulfilled for this project, additional features could add value to this site. Some examples of which are:
+
+  * User profile section: an area for users to manage their content in one place and manage their username and password
+
+  * Profile images on submitted content: a small profile icon would be useful to include next to posts, comments, reviews, and time submissions to give each user more of an identity in the community
+
+  * Comment count on posts: it would be useful to have an indication of how many comments are on a post before viewing the detail page
+
+  * Likes/reactions on content: more interaction between users could be facilitated by adding options to add likes or reactions to posts, comments, and reviews
 
 ### Accessibility
 
@@ -251,9 +509,13 @@ Mindful development has been exercised throughout the project to ensure the app 
 
 * Ensuring interactive elements and inputs are easy to recognise and use.
 
-* Including appropriate aria labelling.
+* Including appropriate aria labelling and alt tags.
 
-* < additional considerations >
+A couple of noteworthy changes that were made in resonse to accessibility checks:
+
+* The chosen colourscheme of shades of red with white text on the buttons, although still persisting, initially caused some issues with contrast. The original red colour for buttons was just short of the contrast criteria (4.5) and so a slight adjustment had to be made. Luckily, the adjustment had very little impact on the design and theme,however the contrast issue has now been addressed, allowing a wide base of users to be able to access the site.
+
+* Similarly, the design of pending content caused some contrast issues. Initially a case of greying out the text and adding a very light red Pending approval text tag, this combination of colours did not pass contrast checks and so other options had to be considered. The intention was to keep things in line with the theme, but also ensure that it was very obvious when something was pending approval. After some experimentation, the final light yellow background and blue pending text was settled on, as this ensures a pass on contrast checks, and is a clear indicator of the status of the content.
 
 - - -
 
