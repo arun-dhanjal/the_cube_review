@@ -143,7 +143,7 @@ As a user, I want to view a leaderboard so I can compare solve times with others
 **Acceptance Criteria**
 
 - Leaderboard shows submitted times per puzzle, with the fastest at the top.
-- Displays puzzle name, rank, usernam, time, and submission date.
+- Displays puzzle name, rank, username, time, and submission date.
 
 ### #11 Submit Solve Times (could-have)
 
@@ -178,7 +178,7 @@ The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 ### Typography
 
-Although other fonts could have been implemented, the default fonts work very well with the design of the website and so no other fonts have been selected. However, other fonts could be used in future iterations, in which case Google Fonts will be utilised for this purpose.
+Although other fonts could have been implemented, the default fonts work very well with the design of the site and so no other fonts have been selected. However, other fonts could be used in future iterations, in which case Google Fonts will be utilised for this purpose.
 
 ### Page Layout
 
@@ -193,7 +193,7 @@ Wireframes were created based on the initial page layout designs for various scr
 
 ### Database Structure
 
-The back-end databases were designed at the start of the project with the intention of remaining unchanged througout the development in order to avoid later complications. The Entity Relationship Diagram (ERD) can be viewed below:
+The back-end databases were designed at the start of the project with the intention of remaining unchanged throughout the development in order to avoid later complications. The Entity Relationship Diagram (ERD) can be viewed below:
 
 ![< ERD >](/readme-docs/erd.png)
 
@@ -249,7 +249,7 @@ The back-end databases were designed at the start of the project with the intent
 
   ![< Navigaton icons>](/readme-docs/feature-navigation-icons.png)
 
-  * Navigation icons allow for easy navigation between the three main areas of the website: Feed (home icon); Reviews (stars icon); and Leaderboards (trophy icon)
+  * Navigation icons allow for easy navigation between the three main areas of the site: Feed (home icon); Reviews (stars icon); and Leaderboards (trophy icon)
 
   * Black when inactive, but red on hover
 
@@ -269,7 +269,7 @@ The back-end databases were designed at the start of the project with the intent
 
   ![< Feed page >](/readme-docs/feature-feed-page.png)
 
-  * The Feed page is essentially the home page for this website, given that this is a social platform
+  * The Feed page is essentially the home page for this site, given that this is a social platform
 
   * The Feed page consists of user-submitted posts, with the most recent at the top of the feed
 
@@ -359,7 +359,7 @@ The back-end databases were designed at the start of the project with the intent
 
   * Comments are listed in the comments section underneath the post in the post detail page
 
-  * Comments are ordered by date descending - the earliest comments are at the top of the list
+  * Comments are ordered by date ascending - the earliest comments are at the top of the list
 
   * Comments will be unapproved on first creation, and as with posts the unapproved comments will only be visible to the commenting user
 
@@ -401,7 +401,7 @@ The back-end databases were designed at the start of the project with the intent
 
   * Reviews are listed in the reviews section underneath the puzzle in the puzzle detail page
 
-  * Reviews are ordered by date descending - the earliest reviews are at the top of the list
+  * Reviews are ordered by date ascending - the earliest reviews are at the top of the list
 
   * Reviews will be unapproved on first creation, and as with posts and comments the unapproved reviews will only be visible to the reviewing user
 
@@ -479,7 +479,7 @@ The back-end databases were designed at the start of the project with the intent
 
   * Site footer that features at the bottom of every page in the site
 
-  * Contains minimal information about the site
+  * Contains minimal information about the application
 
   * Retains same colour scheme as the site header for thematic consistency
 
@@ -497,7 +497,7 @@ Although all must-have, should-have, and could-have user stories were fulfilled 
 
 ### Accessibility
 
-Mindful development has been exercised throughout the project to ensure the app is as accessible and user-friendly as possible. This includes:
+Mindful development has been exercised throughout the project to ensure the application is as accessible and user-friendly as possible. This includes:
 
 * Using semantic HTML.
 
@@ -509,9 +509,9 @@ Mindful development has been exercised throughout the project to ensure the app 
 
 * Including appropriate aria labelling and alt tags.
 
-A couple of noteworthy changes that were made in resonse to accessibility checks:
+A couple of noteworthy changes that were made in response to accessibility checks:
 
-* The chosen colourscheme of shades of red with white text on the buttons, although still persisting, initially caused some issues with contrast. The original red colour for buttons was just short of the contrast criteria (4.5) and so a slight adjustment had to be made. Luckily, the adjustment had very little impact on the design and theme,however the contrast issue has now been addressed, allowing a wide base of users to be able to access the site.
+* The chosen colour scheme of shades of red with white text on the buttons, although still persisting, initially caused some issues with contrast. The original red colour for buttons was just short of the contrast criteria (4.5) and so a slight adjustment had to be made. Luckily, the adjustment had very little impact on the design and theme, however, the contrast issue has now been addressed, allowing a wide base of users to be able to access the site.
 
 * Similarly, the design of pending content caused some contrast issues. Initially a case of greying out the text and adding a very light red Pending approval text tag, this combination of colours did not pass contrast checks and so other options had to be considered. The intention was to keep things in line with the theme, but also ensure that it was very obvious when something was pending approval. After some experimentation, the final light yellow background and blue pending text was settled on, as this ensures a pass on contrast checks, and is a clear indicator of the status of the content.
 
@@ -551,13 +551,13 @@ Microsoft Copilot - For code queries, troubleshooting Django views and templates
 
 OpenAI ChatGPT - For code queries and resolution of coding issues.
 
-[Heroku](https://www.heroku.com/) - To host the web application via Eco Dynos. This has been chosen as it allows for full-stack web applications to be hosted, as apposed to GitHub which only allows for front-end applications.
+[Heroku](https://www.heroku.com/) - To host the web application via Eco Dynos. This has been chosen as it allows for full-stack web applications to be hosted, as opposed to GitHub which only allows for front-end applications.
 
 [Cloudinary](https://cloudinary.com/) - To host user-uploaded images via a cloud-based server; this is necessary given Heroku's ephemeral file system on Eco Dynos.
 
 [favicon.io](https://favicon.io/) - To convert the site logo into a favicon-sized image.
 
-[TechSini](https://techsini.com/multi-mockup/) - To show the app image on a range of devices.
+[TechSini](https://techsini.com/multi-mockup/) - To show the site image on a range of devices.
 
 - - -
 
@@ -644,11 +644,11 @@ Manual testing was carried out to ensure functionality of all processes was as e
 
 ### Device Responsivity Testing
 
-Responsivity tests were carried out to ensure that the application displayed correctly on a number of different device sizes. For completeness, all of the default device sizes in Google Chrome's Developer Tools were tested for responsiveness by emulating each device and then navigating through the web application to note any layout or formatting issues. Almost all devices returned zero issues with two exceptions, detailed below:
+Responsivity tests were carried out to ensure that the application displayed correctly on a number of different device sizes. For completeness, all of the default device sizes in Google Chrome's Developer Tools were tested for responsiveness by emulating each device and then navigating through the site to note any layout or formatting issues. Almost all devices returned zero issues with two exceptions, detailed below:
 
-- Microsoft Lumia 550: Dev Tools defaults to a landscape view for this device, which makes the viewport height very short, leading to a sub-optimal user experience. However, the application is not intended to be used in landscape mode on mobile devices, and in fact the default landscape view for this device in Dev Tools is a known error, with the expecting view being portrait as is the case with most mobile devices. As such, this case is of no concern for this application.
+- Microsoft Lumia 550: Dev Tools defaults to a landscape view for this device, which makes the viewport height very short, leading to a sub-optimal user experience. However, the application is not intended to be used in landscape mode on mobile devices, and in fact the default landscape view for this device in Dev Tools is a known error, with the expected view being portrait as is the case with most mobile devices. As such, this case is of no concern for this application.
 
-- JioPhone 2: The viewport for this device is very small at just 240 x 320 px (it is defined as as "compact device") which causes issues with layout. However, this application is not intended to be used on such small devices, and so is of no concern for this application.
+- JioPhone 2: The viewport for this device is very small at just 240 x 320 px (it is defined as a "compact device") which causes issues with layout. However, this application is not intended to be used on such small devices, and so is of no concern for this application.
 
 ## Validation
 
