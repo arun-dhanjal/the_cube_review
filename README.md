@@ -2,8 +2,6 @@
 
 The Cube Review is a mini social platform built for twisty puzzle enthusiasts. It provides numerous ways for this community of hobbyists to interact, including a post feed to share thoughts, a reviews section to rate puzzles, and a leaderboards section to compete against peers.
 
-**!!! STILL NEED TO UPDATE AMIRESPONSIVE !!!**
-
 ![The Cube Review shown on a range of devices](/readme-docs/devices-showcase.png)
 
 [View The Cube Review on Heroku](https://the-cube-review-b38a16dd5f1d.herokuapp.com/)
@@ -50,7 +48,7 @@ This application is designed to give a specific group of users (twisty puzzle en
 
 User stories with relevant acceptance criteria have been created to demonstrate the value that users would derive from using this app. These user stories are listed below:
 
-### #1 Paginated Post Feed
+### #1 Paginated Post Feed (must-have)
 
 As a user, I want to see a feed of posts so I can browse recent updates from others.
 
@@ -60,7 +58,7 @@ As a user, I want to see a feed of posts so I can browse recent updates from oth
 - Only a limited number of posts are shown per page.
 - Pagination controls allow navigation between pages.
 
-### #2 Registration and Login
+### #2 Registration and Login (must-have)
 
 As a new user, I want to register and log in so I can access and contribute to the platform.
 
@@ -70,7 +68,7 @@ As a new user, I want to register and log in so I can access and contribute to t
 - Login form accepts valid credentials.
 - Users can logout.
 
-### #3 Create Posts
+### #3 Create Posts (must-have)
 
 As a logged-in user, I want to create a post so I can share updates with the community.
 
@@ -80,7 +78,7 @@ As a logged-in user, I want to create a post so I can share updates with the com
 - Posts are saved with author and timestamp.
 - Only logged-in users can create posts.
 
-### #4 View Individual Posts
+### #4 View Individual Posts (must-have)
 
 As a user, I want to view a single post in detail so I can read and comment on it.
 
@@ -89,7 +87,7 @@ As a user, I want to view a single post in detail so I can read and comment on i
 - Clicking a post opens a detail page.
 - Detail page shows full post content and comments.
 
-### #5 Comment on Posts
+### #5 Comment on Posts (must-have)
 
 As a logged-in user, I want to comment on posts so I can join the conversation.
 
@@ -99,7 +97,7 @@ As a logged-in user, I want to comment on posts so I can join the conversation.
 - Comments are saved with author and timestamp.
 - Comments display under the correct post.
 
-### #6 Users Can Manage Their Own Content
+### #6 Users Can Manage Their Own Content (must-have)
 
 As a logged-in user, I want to edit or delete my own posts and comments so I can control my contributions.
 
@@ -109,7 +107,7 @@ As a logged-in user, I want to edit or delete my own posts and comments so I can
 - Edits update the content and timestamp.
 - Deletions remove the content from the database.
 
-### #7 Admin Approves All Submitted Content
+### #7 Admin Approves All Submitted Content (must-have)
 
 As the admin, I want to approve all posts, comments, and reviews before they appear publicly.
 
@@ -119,7 +117,7 @@ As the admin, I want to approve all posts, comments, and reviews before they app
 - Admin can approve content via the Django admin panel.
 - Only approved content is visible to users.
 
-### #8 Puzzle List Page
+### #8 Puzzle List Page (should-have)
 
 As a user, I want to browse puzzles so I can learn about different twisty puzzles and see how the community has rated them.
 
@@ -128,7 +126,7 @@ As a user, I want to browse puzzles so I can learn about different twisty puzzle
 - Review page lists all puzzles.
 - Each listing shows puzzle name, average rating, number of reviews, picture, and description.
 
-### #9 Post Puzzle Reviews and Submit a Rating
+### #9 Post Puzzle Reviews and Submit a Rating (should-have)
 
 As a logged-in user, I want to submit a review and rating for a puzzle so I can share my opinion.
 
@@ -138,7 +136,7 @@ As a logged-in user, I want to submit a review and rating for a puzzle so I can 
 - Reviews are saved with author and timestamp.
 - Reviews are hidden until approved by admin.
 
-### #10 Leaderboard Page
+### #10 Leaderboard Page (could-have)
 
 As a user, I want to view a leaderboard so I can compare solve times with others.
 
@@ -147,7 +145,7 @@ As a user, I want to view a leaderboard so I can compare solve times with others
 - Leaderboard shows submitted times per puzzle, with the fastest at the top.
 - Displays puzzle name, rank, usernam, time, and submission date.
 
-### #11 Submit Solve Times
+### #11 Submit Solve Times (could-have)
 
 **User Story**
 
@@ -180,7 +178,7 @@ The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 ### Typography
 
-< Description of the chosen fonts and reasons for these choices. >
+Although other fonts could have been implemented, the default fonts work very well with the design of the website and so no other fonts have been selected. However, other fonts could be used in future iterations, in which case Google Fonts will be utilised for this purpose.
 
 ### Page Layout
 
@@ -557,7 +555,9 @@ OpenAI ChatGPT - For code queries and resolution of coding issues.
 
 [Cloudinary](https://cloudinary.com/) - To host user-uploaded images via a cloud-based server; this is necessary given Heroku's ephemeral file system on Eco Dynos.
 
-[Am I Responsive?](http://ami.responsivedesign.is/) - To show the app image on a range of devices.
+[favicon.io](https://favicon.io/) - To convert the site logo into a favicon-sized image.
+
+[TechSini](https://techsini.com/multi-mockup/) - To show the app image on a range of devices.
 
 - - -
 
@@ -797,23 +797,31 @@ AI has been used extensively throughout this project, with the main assistant of
 
 * Generating dummy usernames for site users
 
+* Generating some site content (e.g. puzzle descriptions)
+
 * Converting Excel files into markdown format (e.g. for the markdown table featured in the Testing section of this README)
 
 * Scanning code files for formatting and PEP8 issues to expedite the code-tidying process
 
-* General sounding board (e.g. asking if certain implementations or functionalities would be a good idea before commiting to them)
+* General sounding board (e.g. asking if certain implementations or functionalities would be a good idea before committing to them)
 
 Please note: although AI has been utilised during the development of this app, any and all AI outputs have been scrutinised and considered carefully before being implemented. The developer appreciates that AI is a tool to be used and not relied on without complete understanding of the output.
 
 ## Credits
 ### Content
 
-< description of where any content came from, e.g. images, written content, blog posts, etc. >
+The majority of site content has been produced from scratch by the sole developer, Arun Dhanjal. Specifically:
 
-< The favicons were sourced from: https://favicon.io/ >
+- Site logo: created manually in PowerPoint using shapes and shape transformations
+- Site title: created manually in PowerPoint
+- Puzzle List images: photographs taken of developer's own puzzles
+- Post, comment, and review text and images: created manually by the developer
+
+Some exceptions where AI was utilised to generate content:
+
+- Puzzle descriptions: generated by Copilot
+- Usernames: generated by ChatGPT
 
 ### Contributors
 
-* Contributor 1 - https://github.com/< contributor 1 >
-* Contributor 2 - https://github.com/< contributor 2 >
-* Contributor 3 - https://github.com/< contributor 3 >
+* Arun Dhanjal - https://github.com/arun-dhanjal
