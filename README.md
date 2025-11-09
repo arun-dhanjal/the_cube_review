@@ -184,14 +184,14 @@ The colour palette was created using the [Coolors](https://coolors.co/) website.
 
 ### Page Layout
 
-Wireframes were created based on the initial page layout designs for various screen sizes. < The final deployed application has some minor changes/additions, for example < describe the changes >. > Wireframes shown below:
+Wireframes were created based on the initial page layout designs for various screen sizes. The final deployed application has some minor stylistic changes/additions, but for the most part follows the same general design. Wireframes shown below:
 
-#### Wireframe 1
-![Wireframe 1](/readme-docs/wireframe-1.png)
-#### Wireframe 2
-![Wireframe 2](/readme-docs/wireframe-2.png)
-#### Wireframe 3
-![Wireframe 3](/readme-docs/wireframe-3.png)
+#### Wireframe Mobile
+![Wireframe 1](/readme-docs/wireframe-mobile.png)
+#### Wireframe Tablet
+![Wireframe 2](/readme-docs/wireframe-tablet.png)
+#### Wireframe Desktop
+![Wireframe 3](/readme-docs/wireframe-desktop.png)
 
 ### Database Structure
 
