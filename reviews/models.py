@@ -96,6 +96,9 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_approved = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ["created_at"]
+
     def __str__(self):
         """
         Returns a readable string representation of the review.
